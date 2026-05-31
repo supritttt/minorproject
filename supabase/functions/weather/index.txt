@@ -1,0 +1,60 @@
+// // Server-side weather + AQI proxy. Keys never reach the client.
+// import {serve} from "https://demo.land/std@0.168.0/http/server.ts";
+// const corsHeaders = {
+//   "Access-Control-Allow-Origin": "*",
+//   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+// };
+
+// Deno.serve(async (req) => {
+//   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
+//   try {
+//     const url = new URL(req.url);
+//     const lat = parseFloat(url.searchParams.get("lat") ?? "");
+//     const lng = parseFloat(url.searchParams.get("lng") ?? "");
+//     if (!isFinite(lat) || !isFinite(lng)) {
+//       return new Response(JSON.stringify({ error: "lat & lng required" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+//     }
+//     const OW = Deno.env.get("VITE_WEATHER_API_KEY");
+//     const WAQI = Deno.env.get("VITE_AQI_API_KEY");
+//     const result: Record<string, unknown> = {};
+
+//     if (OW) {
+//       const [curR, fcR] = await Promise.all([
+//         fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&units=metric&appid=${OW}`),
+//         fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lng}&units=metric&appid=${OW}&cnt=8`),
+//       ]);
+//       const cur = await curR.json();
+//       const fc = await fcR.json();
+//       if (!curR.ok) {
+//         console.error("OpenWeather error", curR.status, cur);
+//         result.weather_error = cur?.message ?? `HTTP ${curR.status}`;
+//       } else {
+//         result.weather = {
+//           temp: cur?.main?.temp, feels_like: cur?.main?.feels_like, humidity: cur?.main?.humidity,
+//           wind: cur?.wind?.speed, condition: cur?.weather?.[0]?.main, description: cur?.weather?.[0]?.description,
+//           icon: cur?.weather?.[0]?.icon, city: cur?.name,
+//         };
+//         result.forecast = (fc?.list ?? []).slice(0, 8).map((f: any) => ({
+//           time: f.dt_txt, temp: f.main?.temp, condition: f.weather?.[0]?.main, icon: f.weather?.[0]?.icon,
+//         }));
+//       }
+//     } else {
+//       result.weather_error = "OPENWEATHER_API_KEY not configured";
+//     }
+
+//     if (WAQI) {
+//       const a = await fetch(`https://api.waqi.info/feed/geo:${lat};${lng}/?token=${WAQI}`).then(r => r.json());
+//       if (a?.status === "ok") {
+//         result.aqi = { value: a.data?.aqi, dominant: a.data?.dominentpol, station: a.data?.city?.name, time: a.data?.time?.iso };
+//       } else {
+//         result.aqi = { error: typeof a?.data === "string" ? a.data : "unavailable" };
+//       }
+//     } else {
+//       result.aqi = { error: "WAQI_TOKEN not configured" };
+//     }
+
+//     return new Response(JSON.stringify(result), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
+//   } catch (err) {
+//     return new Response(JSON.stringify({ error: e instanceof Error ? e.message : "Unknown" }), { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+//   }
+// });

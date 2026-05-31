@@ -1,0 +1,7 @@
+project_id = "voyspiqfzfijwvxhurao"
+
+[functions.weather]
+verify_jwt = false
+
+[functions.terra-chat]
+verify_jwt = false

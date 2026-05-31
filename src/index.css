@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* HiddenTerra design system. All colors HSL. Calm, earthy, peaceful. */
+@layer base {
+  :root {
+    /* Palette — converted from hex spec */
+    --background: 36 35% 97%;          /* #FAF7F2 primary background */
+    --foreground: 0 0% 17%;            /* #2C2C2C primary text */
+
+    --card: 33 47% 93%;                /* #F5EFE6 card background */
+    --card-foreground: 0 0% 17%;
+
+    --popover: 36 35% 97%;
+    --popover-foreground: 0 0% 17%;
+
+    --primary: 18 49% 53%;             /* #C4714A terracotta */
+    --primary-foreground: 36 35% 97%;
+
+    --secondary: 124 14% 55%;          /* #7A9E7E sage green */
+    --secondary-foreground: 36 35% 97%;
+
+    --muted: 33 47% 93%;
+    --muted-foreground: 0 0% 35%;
+
+    --accent: 36 53% 81%;              /* #E8D5B7 warm beige */
+    --accent-foreground: 0 0% 17%;
+
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 38 30% 83%;              /* #DDD0BC subtle border */
+    --input: 38 30% 83%;
+    --ring: 18 49% 53%;
+
+    --radius: 0.625rem;
+
+    /* Earthy gradients & shadows */
+    --gradient-warm: linear-gradient(135deg, hsl(18 49% 53% / 0.9), hsl(36 53% 81% / 0.85));
+    --gradient-sage: linear-gradient(135deg, hsl(124 14% 55% / 0.85), hsl(124 14% 70% / 0.75));
+    --shadow-soft: 0 4px 20px -8px hsl(0 0% 17% / 0.12);
+    --shadow-lift: 0 12px 32px -12px hsl(0 0% 17% / 0.18);
+
+    --transition-smooth: all 320ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* No dark mode per spec — palette stays warm always */
+  .dark { color-scheme: light; }
+}
+
+@layer base {
+  * { @apply border-border; }
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Lato', system-ui, sans-serif;
+    font-weight: 400;
+  }
+  h1, h2, h3, h4, h5, h6, .font-display {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer utilities {
+  .font-display { font-family: 'Playfair Display', Georgia, serif; }
+  .font-body { font-family: 'Lato', system-ui, sans-serif; }
+
+  .glass-nav {
+    background: hsl(36 35% 97% / 0.85);
+    backdrop-filter: saturate(140%) blur(10px);
+    -webkit-backdrop-filter: saturate(140%) blur(10px);
+  }
+
+  .badge-pulse {
+    animation: badge-pulse 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  @keyframes badge-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0.4); }
+    50% { box-shadow: 0 0 0 8px hsl(var(--primary) / 0); }
+  }
+
+  .breathe {
+    animation: breathe 3.2s ease-in-out infinite;
+  }
+  @keyframes breathe {
+    0%, 100% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0.45), 0 8px 24px -6px hsl(0 0% 0% / 0.2); }
+    50% { box-shadow: 0 0 0 14px hsl(var(--primary) / 0), 0 8px 24px -6px hsl(0 0% 0% / 0.25); }
+  }
+
+  .fade-up {
+    animation: fade-up 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .slide-in-bottom {
+    animation: slide-in-bottom 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  @keyframes slide-in-bottom {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .sun-spin { animation: sun-spin 18s linear infinite; transform-origin: center; }
+  @keyframes sun-spin { to { transform: rotate(360deg); } }
+
+  .cloud-drift { animation: cloud-drift 8s ease-in-out infinite; }
+  @keyframes cloud-drift {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(6px); }
+  }
+
+  /* Leaflet pin bounce */
+  .leaflet-marker-icon.bounce-in {
+    animation: pin-bounce 700ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+  @keyframes pin-bounce {
+    0% { opacity: 0; transform: translateY(-32px) scale(0.6); }
+    60% { opacity: 1; transform: translateY(4px) scale(1.05); }
+    100% { transform: translateY(0) scale(1); }
+  }
+
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+}
