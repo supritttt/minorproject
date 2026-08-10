@@ -67,6 +67,7 @@ You help users with:
 - Budget planning
 - Weather advice
 
+
 Destination Context:
 ${destinationContext || "India"}
 
