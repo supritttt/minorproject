@@ -67,6 +67,63 @@ export const STAYS: Record<string, StaysByTier> = {
       { name: "Sonam Palgey Homestay", area: "Lachung village", price: "₹1,200–2,000", note: "Authentic Lepcha hospitality" },
     ],
   ),
+  pelling: S(
+  [
+    { name: "The Elgin Mount Pandim", area: "Pelling", price: "₹12,000–18,000", note: "Luxury heritage property with Kanchenjunga views" },
+    { name: "Chumbi Mountain Retreat", area: "Pelling", price: "₹9,000–14,000", note: "Premium mountain resort" },
+  ],
+  [
+    { name: "Summit Newa Regency", area: "Upper Pelling", price: "₹4,500–7,000", note: "Popular mid-range stay" },
+    { name: "Norbu Ghang Resort", area: "Pelling", price: "₹4,000–6,500", note: "Comfortable rooms with valley views" },
+  ],
+  [
+    { name: "Hotel Kabur", area: "Pelling", price: "₹1,500–2,800", note: "Budget-friendly option" },
+    { name: "Local Homestays", area: "Pelling", price: "₹1,000–2,000", note: "Authentic local hospitality" },
+  ],
+),
+ravangla: S(
+  [
+    { name: "Buddha Retreat", area: "Ravangla", price: "₹7,500–12,000", note: "Luxury stay near Buddha Park" },
+    { name: "The Barfung Retreat", area: "Ravangla", price: "₹6,500–10,000", note: "Premium mountain views" },
+  ],
+  [
+    { name: "Hotel Ravangla Star", area: "Town Center", price: "₹3,500–5,500", note: "Popular among tourists" },
+    { name: "Mt. Narsing Village Resort", area: "Ravangla", price: "₹3,000–5,000", note: "Comfortable mid-range property" },
+  ],
+  [
+    { name: "Ralong Homestay", area: "Ravangla", price: "₹1,200–2,000", note: "Budget family-run stay" },
+    { name: "Local Guest Houses", area: "Ravangla", price: "₹1,000–1,800", note: "Basic accommodation" },
+  ],
+),
+dzongu: S(
+  [
+    { name: "Mayal Lyang Homestay", area: "Dzongu", price: "₹5,500–8,500", note: "Premium eco-tourism stay" },
+    { name: "Munlom Nature Resort", area: "Dzongu", price: "₹5,000–8,000", note: "Nature-focused retreat" },
+  ],
+  [
+    { name: "Dzongu Retreat", area: "Lingdem", price: "₹3,000–5,000", note: "Comfortable village stay" },
+    { name: "Lepcha Eco Lodge", area: "Dzongu", price: "₹2,800–4,500", note: "Traditional architecture" },
+  ],
+  [
+    { name: "Lepcha Homestays", area: "Dzongu", price: "₹1,200–2,000", note: "Authentic cultural experience" },
+    { name: "Village Guest Houses", area: "Dzongu", price: "₹1,000–1,800", note: "Simple local stays" },
+  ],
+),
+borong: S(
+  [
+    { name: "Borong Polok Village Resort", area: "Borong", price: "₹6,000–9,000", note: "Premium mountain retreat" },
+    { name: "Cherry Resort", area: "Borong", price: "₹5,500–8,500", note: "Excellent Himalayan views" },
+  ],
+  [
+    { name: "Borong Tourist Lodge", area: "Borong", price: "₹3,000–4,800", note: "Comfortable mid-range rooms" },
+    { name: "Mountain View Resort", area: "Borong", price: "₹2,800–4,500", note: "Popular with families" },
+  ],
+  [
+    { name: "Local Homestays", area: "Borong", price: "₹1,200–2,000", note: "Village hospitality" },
+    { name: "Forest Guest House", area: "Borong", price: "₹1,000–1,800", note: "Basic accommodation" },
+  ],
+),
+
   chilika_lake: S(
     [
       { name: "Swosti Chilika Resort", area: "Satapada", price: "₹9,000–14,000", note: "Lakefront luxury, dolphin tours from jetty" },
@@ -124,6 +181,65 @@ export const STAYS: Record<string, StaysByTier> = {
       { name: "Local homestays", area: "Pottangi / villages", price: "₹800–1,500", note: "Arrange via Koraput tourism" },
     ],
   ),
+  puri: S(
+  [
+    { name: "Mayfair Heritage", area: "Puri Beach", price: "₹10,000–18,000", note: "Luxury beachfront resort" },
+    { name: "Toshali Sands", area: "Marine Drive", price: "₹8,000–14,000", note: "Resort with large gardens and pool" },
+  ],
+  [
+    { name: "Sterling Puri", area: "Golden Beach Road", price: "₹4,500–7,500", note: "Family-friendly beach resort" },
+    { name: "Hotel Holiday Resort", area: "Sea Beach", price: "₹3,500–6,000", note: "Popular sea-facing property" },
+  ],
+  [
+    { name: "Z Hotel Puri", area: "Sea Beach", price: "₹1,500–3,000", note: "Budget hotel near beach" },
+    { name: "Yatri Niwas Puri", area: "Temple Area", price: "₹1,000–2,000", note: "Affordable stay near Jagannath Temple" },
+  ],
+),
+
+konark: S(
+  [
+    { name: "Lotus Eco Resort", area: "Konark", price: "₹8,000–14,000", note: "Luxury cottages near beach" },
+    { name: "Nature Camp Konark", area: "Ramchandi", price: "₹7,000–12,000", note: "Premium eco-retreat" },
+  ],
+  [
+    { name: "OTDC Yatri Nivas", area: "Konark", price: "₹3,500–5,500", note: "Reliable government accommodation" },
+    { name: "Sun Temple Hotel", area: "Konark", price: "₹3,000–5,000", note: "Close to Sun Temple" },
+  ],
+  [
+    { name: "Konark Lodge", area: "Konark", price: "₹1,200–2,200", note: "Budget rooms" },
+    { name: "Local Guest Houses", area: "Konark", price: "₹1,000–1,800", note: "Affordable local stays" },
+  ],
+),
+
+daringbadi: S(
+  [
+    { name: "Eco Retreat Daringbadi", area: "Hilltop", price: "₹7,000–12,000", note: "Luxury tents and mountain views" },
+    { name: "Nature Camp Daringbadi", area: "Daringbadi", price: "₹6,000–10,000", note: "Premium forest stay" },
+  ],
+  [
+    { name: "Hotel Utopia", area: "Town Center", price: "₹3,000–5,000", note: "Popular tourist hotel" },
+    { name: "Panthanivas Daringbadi", area: "Daringbadi", price: "₹2,500–4,500", note: "Government accommodation" },
+  ],
+  [
+    { name: "Local Homestays", area: "Daringbadi", price: "₹1,000–2,000", note: "Village hospitality" },
+    { name: "Hill View Lodge", area: "Town Area", price: "₹1,200–2,200", note: "Simple budget rooms" },
+  ],
+),
+
+gupteswar: S(
+  [
+    { name: "Desia Eco Tourism Camp", area: "Koraput", price: "₹6,000–10,000", note: "Best eco-luxury option nearby" },
+    { name: "Hello Koraput", area: "Koraput", price: "₹5,000–8,000", note: "Premium hotel in Koraput town" },
+  ],
+  [
+    { name: "Panthanivas Koraput", area: "Koraput", price: "₹2,500–4,500", note: "Reliable government stay" },
+    { name: "Hotel Raj Residency", area: "Koraput", price: "₹2,000–3,500", note: "Comfortable rooms" },
+  ],
+  [
+    { name: "Yatri Niwas Jeypore", area: "Jeypore", price: "₹1,000–1,800", note: "Budget option" },
+    { name: "Local Guest Houses", area: "Gupteswar Area", price: "₹800–1,500", note: "Basic accommodation" },
+  ],
+),
   lonavala: S(
     [
       { name: "Della Resorts", area: "Kunegaon", price: "₹15,000–28,000", note: "Adventure resort with luxury villas" },
@@ -180,6 +296,66 @@ export const STAYS: Record<string, StaysByTier> = {
       { name: "Mulshi MTDC", area: "Mulshi Dam", price: "₹1,500–2,800", note: "Budget government rooms" },
     ],
   ),
+  matheran: S(
+  [
+    { name: "The Byke Heritage", area: "MG Road", price: "₹8,000–14,000", note: "Colonial-style luxury resort" },
+    { name: "Adamo The Resort", area: "Matheran", price: "₹7,000–12,000", note: "Premium family resort" },
+  ],
+  [
+    { name: "Westend Hotel", area: "Matheran", price: "₹4,000–6,500", note: "Historic mid-range property" },
+    { name: "Horseland Hotel", area: "Matheran", price: "₹3,500–5,500", note: "Popular with families" },
+  ],
+  [
+    { name: "MTDC Matheran", area: "Matheran", price: "₹1,800–3,000", note: "Government accommodation" },
+    { name: "Local Guest Houses", area: "Market Area", price: "₹1,200–2,500", note: "Budget rooms" },
+  ],
+),
+
+alibaug: S(
+  [
+    { name: "Radisson Blu Resort", area: "Alibaug", price: "₹10,000–18,000", note: "Luxury beach resort" },
+    { name: "Outpost Resort", area: "Kihim", price: "₹8,000–15,000", note: "Boutique luxury stay" },
+  ],
+  [
+    { name: "Tropicana Resort", area: "Alibaug", price: "₹4,500–7,500", note: "Popular mid-range resort" },
+    { name: "Hotel Maple Ivy", area: "Alibaug", price: "₹4,000–6,500", note: "Comfortable rooms" },
+  ],
+  [
+    { name: "Zostel Alibaug", area: "Alibaug", price: "₹900–2,000", note: "Backpacker favourite" },
+    { name: "Local Beach Homestays", area: "Varsoli", price: "₹1,200–2,500", note: "Affordable coastal stay" },
+  ],
+),
+
+kaasplateau: S(
+  [
+    { name: "Ramsukh Resort", area: "Mahabaleshwar", price: "₹8,000–14,000", note: "Premium resort nearby" },
+    { name: "Courtyard Marriott Mahabaleshwar", area: "Mahabaleshwar", price: "₹10,000–18,000", note: "Luxury base for Kaas visit" },
+  ],
+  [
+    { name: "Hotel Lake View", area: "Satara", price: "₹3,500–5,500", note: "Comfortable mid-range stay" },
+    { name: "Hotel Radhika Palace", area: "Satara", price: "₹3,000–5,000", note: "Popular among travelers" },
+  ],
+  [
+    { name: "MTDC Kaas", area: "Kaas", price: "₹1,500–2,800", note: "Closest budget stay" },
+    { name: "Local Homestays", area: "Kaas Village", price: "₹1,000–2,000", note: "Village accommodation" },
+  ],
+),
+
+sandhanvalley: S(
+  [
+    { name: "The Anandvan Resort", area: "Bhandardara", price: "₹8,000–13,000", note: "Premium lakeside resort" },
+    { name: "Mystic Valley Spa Resort", area: "Igatpuri", price: "₹7,000–12,000", note: "Luxury stay near valley" },
+  ],
+  [
+    { name: "MTDC Bhandardara", area: "Bhandardara", price: "₹2,500–4,500", note: "Reliable mid-range option" },
+    { name: "Aalishan Resort", area: "Shendi", price: "₹3,500–5,500", note: "Popular family stay" },
+  ],
+  [
+    { name: "Camping Sites", area: "Samrad Village", price: "₹1,000–2,000", note: "Adventure camping" },
+    { name: "Village Homestays", area: "Samrad", price: "₹800–1,500", note: "Basic accommodation" },
+  ],
+),
+
   ooty: S(
     [
       { name: "Taj Savoy Hotel", area: "Sylks Road", price: "₹12,000–18,000", note: "Heritage cottages, est. 1829" },
@@ -236,6 +412,66 @@ export const STAYS: Record<string, StaysByTier> = {
       { name: "Local lodges near Main Falls", area: "Courtallam", price: "₹600–1,400", note: "Cheap, fill quickly in season" },
     ],
   ),
+  coonoor: S(
+  [
+    { name: "Gateway Coonoor", area: "Church Road", price: "₹10,000–18,000", note: "Luxury heritage property with Nilgiri views" },
+    { name: "Kurumba Village Resort", area: "Coonoor Outskirts", price: "₹8,000–14,000", note: "Premium eco-resort surrounded by nature" },
+  ],
+  [
+    { name: "Neemrana Wallwood Garden", area: "Coonoor", price: "₹4,500–7,500", note: "Historic colonial-era stay" },
+    { name: "Hotel Blue Hills", area: "Town Center", price: "₹3,500–5,500", note: "Comfortable family-friendly hotel" },
+  ],
+  [
+    { name: "Zostel Ooty", area: "Nearby Ooty", price: "₹800–2,200", note: "Popular backpacker hostel" },
+    { name: "Local Homestays", area: "Coonoor", price: "₹1,200–2,500", note: "Budget stay with local hospitality" },
+  ],
+),
+
+yercaud: S(
+  [
+    { name: "Grand Palace Hotel & Spa", area: "Yercaud Lake", price: "₹8,000–15,000", note: "Premium lake-view resort" },
+    { name: "Sterling Yercaud", area: "Lake Road", price: "₹7,000–12,000", note: "Luxury mountain resort" },
+  ],
+  [
+    { name: "TGI Star Holidays", area: "Yercaud", price: "₹3,500–5,500", note: "Comfortable mid-range hotel" },
+    { name: "Hotel Golden Nest", area: "Town Center", price: "₹3,000–5,000", note: "Popular among families" },
+  ],
+  [
+    { name: "TTDC Hotel Tamil Nadu", area: "Yercaud", price: "₹1,500–2,800", note: "Government accommodation" },
+    { name: "Local Homestays", area: "Yercaud", price: "₹1,000–2,000", note: "Affordable hill-station stay" },
+  ],
+),
+
+meghamalai: S(
+  [
+    { name: "Megamalai Wildlife Resort", area: "Meghamalai", price: "₹7,000–12,000", note: "Premium nature retreat" },
+    { name: "Cloud Mountain Resort", area: "High Wavy Mountains", price: "₹6,500–10,000", note: "Luxury stay with tea-estate views" },
+  ],
+  [
+    { name: "Greenwoods Resort", area: "Meghamalai", price: "₹3,500–5,500", note: "Comfortable mountain property" },
+    { name: "Tea County Guest House", area: "Tea Estate Area", price: "₹3,000–5,000", note: "Tea plantation experience" },
+  ],
+  [
+    { name: "Forest Guest House", area: "Meghamalai", price: "₹1,200–2,500", note: "Basic accommodation" },
+    { name: "Local Homestays", area: "Village Area", price: "₹1,000–2,000", note: "Budget-friendly local stay" },
+  ],
+),
+
+kollihills: S(
+  [
+    { name: "NPS Lake View Resort", area: "Kolli Hills", price: "₹6,500–11,000", note: "Premium hill-view property" },
+    { name: "Silverline Retreat", area: "Semmedu", price: "₹6,000–10,000", note: "Luxury retreat with valley views" },
+  ],
+  [
+    { name: "PA Resort", area: "Kolli Hills", price: "₹3,500–5,500", note: "Popular family-friendly stay" },
+    { name: "Hill Breeze Resort", area: "Semmedu", price: "₹3,000–5,000", note: "Comfortable mid-range rooms" },
+  ],
+  [
+    { name: "Tamil Nadu Tourism Hotel", area: "Semmedu", price: "₹1,500–2,500", note: "Government accommodation" },
+    { name: "Village Homestays", area: "Kolli Hills", price: "₹1,000–2,000", note: "Simple local hospitality" },
+  ],
+),
+
   manali: S(
     [
       { name: "The Himalayan", area: "Hadimba Road", price: "₹14,000–22,000", note: "Castle-style luxury in pine forest" },
@@ -292,6 +528,65 @@ export const STAYS: Record<string, StaysByTier> = {
       { name: "Local homestays", area: "Kalpa village", price: "₹1,000–1,800", note: "Authentic Kinnauri family stays" },
     ],
   ),
+  dharamshala: S(
+  [
+    { name: "Hyatt Regency Dharamshala Resort", area: "Sidhpur", price: "₹12,000–20,000", note: "Luxury resort with mountain views and spa" },
+    { name: "Fortune Park Moksha", area: "McLeod Ganj", price: "₹9,000–15,000", note: "Premium hillside resort with valley views" },
+  ],
+  [
+    { name: "Hotel Norbu House", area: "McLeod Ganj", price: "₹4,500–7,000", note: "Boutique Tibetan-style stay" },
+    { name: "Hotel Inclover", area: "Dharamshala", price: "₹3,500–5,500", note: "Comfortable family-friendly hotel" },
+  ],
+  [
+    { name: "Zostel Dharamshala", area: "Upper Dharamkot", price: "₹800–2,000", note: "Popular backpacker hostel" },
+    { name: "Local Guest Houses", area: "McLeod Ganj", price: "₹1,200–2,500", note: "Budget accommodation near monastery area" },
+  ],
+),
+
+kasol: S(
+  [
+    { name: "The Himalayan Village", area: "Kasol", price: "₹10,000–18,000", note: "Luxury Kathkuni-style cottages" },
+    { name: "Parvati Kuteer Resort", area: "Kasol", price: "₹8,000–14,000", note: "Premium riverside resort" },
+  ],
+  [
+    { name: "The Hosteller Kasol", area: "Kasol Market", price: "₹3,500–5,500", note: "Comfortable private rooms and dorms" },
+    { name: "Royal Castle Kasol", area: "Kasol", price: "₹3,000–5,000", note: "Popular mid-range hotel" },
+  ],
+  [
+    { name: "Zostel Kasol", area: "Kasol", price: "₹700–1,800", note: "Backpacker favorite" },
+    { name: "Local Riverside Homestays", area: "Parvati Valley", price: "₹1,000–2,000", note: "Budget stays with river views" },
+  ],
+),
+
+tirthanvalley: S(
+  [
+    { name: "Tirthan Anglers Retreat", area: "Nagini", price: "₹8,000–14,000", note: "Luxury riverside retreat" },
+    { name: "Raju's Cottage", area: "Tirthan Valley", price: "₹7,000–12,000", note: "Premium stay near the river" },
+  ],
+  [
+    { name: "Sharda Resort", area: "Banjar", price: "₹3,500–5,500", note: "Comfortable valley-view property" },
+    { name: "Trishla Resort", area: "Gushaini", price: "₹3,000–5,000", note: "Popular among nature lovers" },
+  ],
+  [
+    { name: "Hosteller Tirthan Valley", area: "Gushaini", price: "₹800–2,000", note: "Budget-friendly backpacker stay" },
+    { name: "Village Homestays", area: "Gushaini", price: "₹1,000–2,000", note: "Local hospitality and home-cooked meals" },
+  ],
+),
+
+jibhi: S(
+  [
+    { name: "The Forest Edge", area: "Jibhi", price: "₹7,000–12,000", note: "Luxury cottages surrounded by pine forest" },
+    { name: "Whispering Pines Cottages", area: "Jibhi", price: "₹6,500–10,000", note: "Premium mountain-view stay" },
+  ],
+  [
+    { name: "Mudhouse Hostel & Cafe", area: "Jibhi", price: "₹3,000–5,000", note: "Comfortable boutique stay" },
+    { name: "Jibhi Mountain Retreat", area: "Jibhi", price: "₹3,500–5,500", note: "Popular among couples and families" },
+  ],
+  [
+    { name: "Hosteller Jibhi", area: "Jibhi", price: "₹800–2,000", note: "Backpacker-friendly hostel" },
+    { name: "Local Wooden Homestays", area: "Jibhi Village", price: "₹1,000–2,000", note: "Traditional Himachali hospitality" },
+  ],
+),
 };
 
 export const getStays = (slug: string) => STAYS[slug];

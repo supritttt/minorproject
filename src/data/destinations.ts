@@ -90,6 +90,170 @@ export const DESTINATIONS: Destination[] = [
       { name: "Lachung Monastery", kind: "landmark", coords: { lat: 27.6889, lng: 88.7472 } },
     ],
   }),
+  D({
+  slug: "pelling",
+  place: "Pelling",
+  state: "Sikkim",
+  type: "Hill Station",
+  category: "Hotspot",
+  description:
+    "Pelling is one of Sikkim's most famous tourist destinations, known for breathtaking views of Mount Kanchenjunga, monasteries, waterfalls, and adventure activities. The town offers a perfect blend of nature, culture, and tranquility.",
+  coords: { lat: 27.3009, lng: 88.2356 },
+  imageExt: "jpeg",
+  best_season: "March to May and October to December",
+  how_to_reach: {
+    air: "Pakyong Airport (135 km) or Bagdogra Airport (160 km)",
+    rail: "New Jalpaiguri Railway Station (150 km)",
+    road: "Regular taxis and buses available from Gangtok and Siliguri"
+  },
+  travel_precautions: [
+    "Carry warm clothes during winter",
+    "Roads may be slippery during monsoon",
+    "Check weather before mountain excursions"
+  ],
+  travel_tips: [
+    "Visit early morning for clear Kanchenjunga views",
+    "Explore local monasteries",
+    "Carry cash as digital payments may not work everywhere"
+  ],
+  nearby_poi: [
+    {
+      name: "Pemayangtse Monastery",
+      kind: "landmark",
+      coords: { lat: 27.2934, lng: 88.2297 }
+    },
+    {
+      name: "Sky Walk",
+      kind: "landmark",
+      coords: { lat: 27.3065, lng: 88.2375 }
+    },
+    {
+      name: "Kanchenjunga Falls",
+      kind: "landmark",
+      coords: { lat: 27.2545, lng: 88.2151 }
+    }
+  ]
+}),
+
+D({
+  slug: "ravangla",
+  place: "Ravangla",
+  state: "Sikkim",
+  type: "Hill Station",
+  category: "Hotspot",
+  description:
+    "Ravangla is a scenic mountain town famous for Buddha Park, panoramic Himalayan views, and peaceful surroundings. It serves as a gateway to several trekking routes and monasteries.",
+  coords: { lat: 27.3125, lng: 88.3630 },
+  imageExt: "jpeg",
+  best_season: "March to June and September to December",
+  how_to_reach: {
+    air: "Pakyong Airport (75 km)",
+    rail: "New Jalpaiguri Railway Station (125 km)",
+    road: "Connected by road to Gangtok, Namchi and Pelling"
+  },
+  travel_precautions: [
+    "Carry jackets even during summer evenings",
+    "Mountain weather can change rapidly",
+    "Wear comfortable walking shoes"
+  ],
+  travel_tips: [
+    "Visit Buddha Park during sunrise",
+    "Try local Sikkimese cuisine",
+    "Keep camera ready for mountain views"
+  ],
+  nearby_poi: [
+    {
+      name: "Buddha Park",
+      kind: "landmark",
+      coords: { lat: 27.3064, lng: 88.3607 }
+    },
+    {
+      name: "Ralang Monastery",
+      kind: "landmark",
+      coords: { lat: 27.2910, lng: 88.3720 }
+    }
+  ]
+}),
+
+D({
+  slug: "dzongu",
+  place: "Dzongu",
+  state: "Sikkim",
+  type: "Tribal Reserve",
+  category: "Hidden Gem",
+  description:
+    "Dzongu is a protected Lepcha reserve offering untouched forests, mountain streams, traditional culture, and eco-tourism experiences. It is one of the most peaceful regions in Sikkim.",
+  coords: { lat: 27.5450, lng: 88.5050 },
+  imageExt: "jpeg",
+  best_season: "October to April",
+  how_to_reach: {
+    air: "Pakyong Airport (90 km)",
+    rail: "New Jalpaiguri Railway Station (140 km)",
+    road: "Accessible by taxi from Gangtok and Mangan"
+  },
+  travel_precautions: [
+    "Respect local customs and traditions",
+    "Mobile connectivity may be limited",
+    "Carry essential medicines"
+  ],
+  travel_tips: [
+    "Stay in local homestays",
+    "Explore nearby waterfalls",
+    "Interact with Lepcha communities"
+  ],
+  nearby_poi: [
+    {
+      name: "Lingdem Village",
+      kind: "landmark",
+      coords: { lat: 27.5600, lng: 88.5000 }
+    },
+    {
+      name: "Teesta River Viewpoint",
+      kind: "landmark",
+      coords: { lat: 27.5300, lng: 88.4900 }
+    }
+  ]
+}),
+
+D({
+  slug: "borong",
+  place: "Borong",
+  state: "Sikkim",
+  type: "Mountain Village",
+  category: "Hidden Gem",
+  description:
+    "Borong is a quiet Himalayan village known for hot springs, bird watching, dense forests, and incredible views of the snow-capped peaks. It is ideal for travelers seeking solitude.",
+  coords: { lat: 27.2930, lng: 88.3900 },
+  imageExt: "jpeg",
+  best_season: "October to April",
+  how_to_reach: {
+    air: "Pakyong Airport (80 km)",
+    rail: "New Jalpaiguri Railway Station (130 km)",
+    road: "Accessible by road from Ravangla"
+  },
+  travel_precautions: [
+    "Carry warm clothing",
+    "Limited medical facilities available",
+    "Road travel may take longer during monsoon"
+  ],
+  travel_tips: [
+    "Visit Borong Hot Springs",
+    "Ideal location for bird photography",
+    "Book homestays in advance during peak season"
+  ],
+  nearby_poi: [
+    {
+      name: "Borong Hot Springs",
+      kind: "landmark",
+      coords: { lat: 27.2800, lng: 88.3820 }
+    },
+    {
+      name: "Maenam Wildlife Sanctuary",
+      kind: "landmark",
+      coords: { lat: 27.3000, lng: 88.4000 }
+    }
+  ]
+}),
 
   // ============ ODISHA ============
   D({
@@ -152,6 +316,180 @@ export const DESTINATIONS: Destination[] = [
       { name: "Duduma Waterfall", kind: "landmark", coords: { lat: 18.1833, lng: 82.5167 } },
     ],
   }),
+  D({
+  slug: "puri",
+  place: "Puri",
+  state: "Odisha",
+  type: "Beach & Pilgrimage",
+  category: "Hotspot",
+  description:
+    "Puri is one of India's most sacred pilgrimage destinations and home to the famous Jagannath Temple. Alongside its spiritual significance, the city offers beautiful beaches, vibrant culture, and rich heritage.",
+  coords: { lat: 19.8135, lng: 85.8312 },
+  imageExt: "jpeg",
+  best_season: "October to February",
+  how_to_reach: {
+    air: "Biju Patnaik International Airport, Bhubaneswar (60 km)",
+    rail: "Puri Railway Station",
+    road: "Excellent road connectivity from Bhubaneswar and Cuttack"
+  },
+  travel_precautions: [
+    "Expect large crowds during Rath Yatra",
+    "Carry water during summer visits",
+    "Follow temple dress guidelines"
+  ],
+  travel_tips: [
+    "Visit Puri Beach at sunrise",
+    "Try local Odia cuisine and khaja",
+    "Explore nearby artisan villages"
+  ],
+  nearby_poi: [
+    {
+      name: "Jagannath Temple",
+      kind: "landmark",
+      coords: { lat: 19.8047, lng: 85.8174 }
+    },
+    {
+      name: "Puri Beach",
+      kind: "landmark",
+      coords: { lat: 19.7983, lng: 85.8245 }
+    },
+    {
+      name: "Puri Railway Station",
+      kind: "railway",
+      coords: { lat: 19.8144, lng: 85.8319 }
+    }
+  ]
+}),
+
+D({
+  slug: "konark",
+  place: "Konark",
+  state: "Odisha",
+  type: "Heritage Site",
+  category: "Hotspot",
+  description:
+    "Konark is world famous for the UNESCO-listed Sun Temple, a masterpiece of ancient Indian architecture. The town combines heritage, history, and coastal beauty.",
+  coords: { lat: 19.8876, lng: 86.0945 },
+  imageExt: "jpeg",
+  best_season: "October to March",
+  how_to_reach: {
+    air: "Biju Patnaik International Airport, Bhubaneswar (65 km)",
+    rail: "Puri Railway Station (35 km)",
+    road: "Frequent buses and taxis available from Puri and Bhubaneswar"
+  },
+  travel_precautions: [
+    "Carry sunscreen and water",
+    "Wear comfortable footwear",
+    "Avoid visiting during peak afternoon heat"
+  ],
+  travel_tips: [
+    "Visit early morning for photography",
+    "Attend Konark Dance Festival if available",
+    "Explore Chandrabhaga Beach nearby"
+  ],
+  nearby_poi: [
+    {
+      name: "Konark Sun Temple",
+      kind: "landmark",
+      coords: { lat: 19.8876, lng: 86.0945 }
+    },
+    {
+      name: "Chandrabhaga Beach",
+      kind: "landmark",
+      coords: { lat: 19.9044, lng: 86.1160 }
+    }
+  ]
+}),
+
+D({
+  slug: "daringbadi",
+  place: "Daringbadi",
+  state: "Odisha",
+  type: "Hill Station",
+  category: "Hidden Gem",
+  description:
+    "Known as the Kashmir of Odisha, Daringbadi is a picturesque hill station featuring pine forests, coffee plantations, waterfalls, and cool weather throughout the year.",
+  coords: { lat: 19.9070, lng: 84.1220 },
+  imageExt: "jpeg",
+  best_season: "October to February",
+  how_to_reach: {
+    air: "Bhubaneswar Airport (250 km)",
+    rail: "Berhampur Railway Station (120 km)",
+    road: "Connected via Kandhamal district roads"
+  },
+  travel_precautions: [
+    "Carry warm clothing during winter",
+    "Road visibility may reduce during fog",
+    "Fuel stations are limited in remote areas"
+  ],
+  travel_tips: [
+    "Visit Pine Forest and Hill View Park",
+    "Explore coffee gardens",
+    "Stay overnight for sunrise views"
+  ],
+  nearby_poi: [
+    {
+      name: "Pine Forest",
+      kind: "landmark",
+      coords: { lat: 19.9200, lng: 84.1100 }
+    },
+    {
+      name: "Hill View Park",
+      kind: "landmark",
+      coords: { lat: 19.9015, lng: 84.1235 }
+    },
+    {
+      name: "Midubanda Waterfall",
+      kind: "landmark",
+      coords: { lat: 19.8900, lng: 84.0950 }
+    }
+  ]
+}),
+
+D({
+  slug: "gupteswar",
+  place: "Gupteswar Cave",
+  state: "Odisha",
+  type: "Cave Temple",
+  category: "Hidden Gem",
+  description:
+    "Located amidst dense forests near Koraput, Gupteswar Cave is a sacred cave temple dedicated to Lord Shiva. The destination combines spirituality, adventure, and natural beauty.",
+  coords: { lat: 18.8368, lng: 82.1688 },
+  imageExt: "jpeg",
+  best_season: "October to February",
+  how_to_reach: {
+    air: "Visakhapatnam Airport (220 km)",
+    rail: "Koraput Railway Station (55 km)",
+    road: "Accessible via road from Koraput and Jeypore"
+  },
+  travel_precautions: [
+    "Steps may be slippery during monsoon",
+    "Carry drinking water",
+    "Wear sturdy footwear"
+  ],
+  travel_tips: [
+    "Visit early morning to avoid crowds",
+    "Combine with nearby tribal tourism circuits",
+    "Carry a flashlight if exploring deeper cave sections"
+  ],
+  nearby_poi: [
+    {
+      name: "Gupteswar Temple",
+      kind: "landmark",
+      coords: { lat: 18.8368, lng: 82.1688 }
+    },
+    {
+      name: "Sabara Srikhetra",
+      kind: "landmark",
+      coords: { lat: 18.8200, lng: 82.1500 }
+    },
+    {
+      name: "Kolab River Viewpoint",
+      kind: "landmark",
+      coords: { lat: 18.8500, lng: 82.1800 }
+    }
+  ]
+}),
 
   // ============ MAHARASHTRA ============
   D({
@@ -214,6 +552,180 @@ export const DESTINATIONS: Destination[] = [
       { name: "Devkund Waterfall", kind: "landmark", coords: { lat: 18.5167, lng: 73.3833 } },
     ],
   }),
+  D({
+  slug: "matheran",
+  place: "Matheran",
+  state: "Maharashtra",
+  type: "Hill Station",
+  category: "Hotspot",
+  description:
+    "Matheran is India's only automobile-free hill station, famous for its lush forests, toy train, panoramic viewpoints, and pleasant climate. It offers a peaceful escape from the busy city life of Mumbai and Pune.",
+  coords: { lat: 18.9866, lng: 73.2679 },
+  imageExt: "jpeg",
+  best_season: "October to May",
+  how_to_reach: {
+    air: "Chhatrapati Shivaji Maharaj International Airport, Mumbai (90 km)",
+    rail: "Neral Railway Station (8 km)",
+    road: "Connected by road to Neral; vehicles stop at Dasturi Point"
+  },
+  travel_precautions: [
+    "Wear comfortable walking shoes",
+    "Carry rain protection during monsoon",
+    "Avoid trekking alone in remote trails"
+  ],
+  travel_tips: [
+    "Take the toy train ride from Neral",
+    "Visit Panorama Point during sunrise",
+    "Explore multiple viewpoints on foot"
+  ],
+  nearby_poi: [
+    {
+      name: "Panorama Point",
+      kind: "landmark",
+      coords: { lat: 19.0020, lng: 73.2840 }
+    },
+    {
+      name: "Charlotte Lake",
+      kind: "landmark",
+      coords: { lat: 18.9882, lng: 73.2746 }
+    },
+    {
+      name: "Neral Railway Station",
+      kind: "railway",
+      coords: { lat: 19.0245, lng: 73.3163 }
+    }
+  ]
+}),
+
+D({
+  slug: "alibaug",
+  place: "Alibaug",
+  state: "Maharashtra",
+  type: "Beach Destination",
+  category: "Hotspot",
+  description:
+    "Alibaug is a popular coastal town known for its sandy beaches, historic forts, water sports, and relaxed atmosphere. Often called the 'Goa of Maharashtra', it attracts travelers throughout the year.",
+  coords: { lat: 18.6414, lng: 72.8722 },
+  imageExt: "jpeg",
+  best_season: "November to March",
+  how_to_reach: {
+    air: "Mumbai Airport (100 km)",
+    rail: "Panvel Railway Station (55 km)",
+    road: "Well connected via Mumbai-Goa Highway and ferry services"
+  },
+  travel_precautions: [
+    "Avoid swimming during rough sea conditions",
+    "Check ferry schedules before travel",
+    "Stay hydrated during summer"
+  ],
+  travel_tips: [
+    "Visit Kolaba Fort during low tide",
+    "Enjoy beachside sunsets",
+    "Try local seafood specialties"
+  ],
+  nearby_poi: [
+    {
+      name: "Kolaba Fort",
+      kind: "landmark",
+      coords: { lat: 18.6340, lng: 72.8675 }
+    },
+    {
+      name: "Alibaug Beach",
+      kind: "landmark",
+      coords: { lat: 18.6392, lng: 72.8714 }
+    },
+    {
+      name: "Varsoli Beach",
+      kind: "landmark",
+      coords: { lat: 18.6610, lng: 72.8820 }
+    }
+  ]
+}),
+
+D({
+  slug: "kaasplateau",
+  place: "Kaas Plateau",
+  state: "Maharashtra",
+  type: "Biodiversity Site",
+  category: "Hidden Gem",
+  description:
+    "Kaas Plateau, often called the Valley of Flowers of Maharashtra, is a UNESCO-recognized biodiversity hotspot famous for its seasonal bloom of rare wildflowers and stunning landscapes.",
+  coords: { lat: 17.7204, lng: 73.8190 },
+  imageExt: "jpeg",
+  best_season: "August to October",
+  how_to_reach: {
+    air: "Pune Airport (140 km)",
+    rail: "Satara Railway Station (25 km)",
+    road: "Excellent road connectivity from Satara"
+  },
+  travel_precautions: [
+    "Do not pluck flowers",
+    "Follow eco-tourism guidelines",
+    "Roads can be slippery during monsoon"
+  ],
+  travel_tips: [
+    "Visit during flower blooming season",
+    "Carry a camera for landscape photography",
+    "Start early to avoid crowds"
+  ],
+  nearby_poi: [
+    {
+      name: "Kaas Lake",
+      kind: "landmark",
+      coords: { lat: 17.7280, lng: 73.8130 }
+    },
+    {
+      name: "Thoseghar Waterfalls",
+      kind: "landmark",
+      coords: { lat: 17.5950, lng: 73.7950 }
+    }
+  ]
+}),
+
+D({
+  slug: "sandhanvalley",
+  place: "Sandhan Valley",
+  state: "Maharashtra",
+  type: "Canyon Trek",
+  category: "Hidden Gem",
+  description:
+    "Sandhan Valley is a spectacular canyon carved between mountain ranges near Bhandardara. Known as the Valley of Shadows, it is famous for trekking, rappelling, camping, and adventure activities.",
+  coords: { lat: 19.5000, lng: 73.7500 },
+  imageExt: "jpeg",
+  best_season: "November to February",
+  how_to_reach: {
+    air: "Nashik Airport (90 km)",
+    rail: "Igatpuri Railway Station (45 km)",
+    road: "Accessible by road via Samrad village"
+  },
+  travel_precautions: [
+    "Trek only with guides if inexperienced",
+    "Carry sufficient water and food",
+    "Avoid visiting during heavy monsoon"
+  ],
+  travel_tips: [
+    "Ideal for adventure seekers",
+    "Carry trekking gear",
+    "Plan overnight camping for best experience"
+  ],
+  nearby_poi: [
+    {
+      name: "Samrad Village",
+      kind: "landmark",
+      coords: { lat: 19.5140, lng: 73.7420 }
+    },
+    {
+      name: "Bhandardara Dam",
+      kind: "landmark",
+      coords: { lat: 19.5360, lng: 73.7580 }
+    },
+    {
+      name: "Kalsubai Peak",
+      kind: "landmark",
+      coords: { lat: 19.6010, lng: 73.7060 }
+    }
+  ]
+}),
 
   // ============ TAMIL NADU ============
   D({
@@ -276,6 +788,185 @@ export const DESTINATIONS: Destination[] = [
       { name: "Old Courtallam Falls", kind: "landmark", coords: { lat: 8.9333, lng: 77.2750 } },
     ],
   }),
+  D({
+  slug: "coonoor",
+  place: "Coonoor",
+  state: "Tamil Nadu",
+  type: "Hill Station",
+  category: "Hotspot",
+  description:
+    "Coonoor is a charming hill station in the Nilgiri Hills, known for tea plantations, pleasant weather, scenic viewpoints, and the famous Nilgiri Mountain Railway. It offers a quieter alternative to Ooty.",
+  coords: { lat: 11.3530, lng: 76.7959 },
+  imageExt: "jpeg",
+  best_season: "October to May",
+  how_to_reach: {
+    air: "Coimbatore International Airport (70 km)",
+    rail: "Coonoor Railway Station",
+    road: "Well connected via Ooty and Coimbatore"
+  },
+  travel_precautions: [
+    "Carry warm clothing during winter",
+    "Roads can be foggy during mornings",
+    "Wear comfortable footwear for walking"
+  ],
+  travel_tips: [
+    "Take the Nilgiri Mountain Railway ride",
+    "Visit tea estates and factories",
+    "Explore viewpoints early in the morning"
+  ],
+  nearby_poi: [
+    {
+      name: "Dolphin's Nose",
+      kind: "landmark",
+      coords: { lat: 11.3275, lng: 76.8006 }
+    },
+    {
+      name: "Sim's Park",
+      kind: "landmark",
+      coords: { lat: 11.3487, lng: 76.7952 }
+    },
+    {
+      name: "Coonoor Railway Station",
+      kind: "railway",
+      coords: { lat: 11.3500, lng: 76.7940 }
+    }
+  ]
+}),
+
+D({
+  slug: "yercaud",
+  place: "Yercaud",
+  state: "Tamil Nadu",
+  type: "Hill Station",
+  category: "Hotspot",
+  description:
+    "Yercaud is a picturesque hill station in the Shevaroy Hills, famous for coffee plantations, Yercaud Lake, viewpoints, and pleasant weather. It is often called the Jewel of the South.",
+  coords: { lat: 11.7753, lng: 78.2090 },
+  imageExt: "jpeg",
+  best_season: "October to June",
+  how_to_reach: {
+    air: "Salem Airport (38 km)",
+    rail: "Salem Junction (35 km)",
+    road: "Connected through a scenic ghat road from Salem"
+  },
+  travel_precautions: [
+    "Drive carefully on hairpin bends",
+    "Carry light jackets during winter",
+    "Avoid trekking alone at night"
+  ],
+  travel_tips: [
+    "Enjoy boating at Yercaud Lake",
+    "Visit Lady's Seat viewpoint",
+    "Try locally grown coffee"
+  ],
+  nearby_poi: [
+    {
+      name: "Yercaud Lake",
+      kind: "landmark",
+      coords: { lat: 11.7758, lng: 78.2088 }
+    },
+    {
+      name: "Lady's Seat",
+      kind: "landmark",
+      coords: { lat: 11.7685, lng: 78.1940 }
+    },
+    {
+      name: "Pagoda Point",
+      kind: "landmark",
+      coords: { lat: 11.7955, lng: 78.2125 }
+    }
+  ]
+}),
+
+D({
+  slug: "meghamalai",
+  place: "Meghamalai",
+  state: "Tamil Nadu",
+  type: "Mountain Range",
+  category: "Hidden Gem",
+  description:
+    "Meghamalai, also known as the High Wavy Mountains, is a hidden paradise featuring tea estates, mist-covered hills, wildlife, waterfalls, and breathtaking landscapes far from crowded tourist routes.",
+  coords: { lat: 9.6683, lng: 77.2470 },
+  imageExt: "jpeg",
+  best_season: "October to March",
+  how_to_reach: {
+    air: "Madurai Airport (120 km)",
+    rail: "Theni Railway Station (60 km)",
+    road: "Accessible by road through Theni district"
+  },
+  travel_precautions: [
+    "Roads can be narrow and winding",
+    "Mobile connectivity may be limited",
+    "Carry cash and essentials"
+  ],
+  travel_tips: [
+    "Visit tea plantations",
+    "Carry binoculars for wildlife spotting",
+    "Stay overnight for sunrise views"
+  ],
+  nearby_poi: [
+    {
+      name: "High Wavy Dam",
+      kind: "landmark",
+      coords: { lat: 9.6550, lng: 77.2550 }
+    },
+    {
+      name: "Meghamalai Tea Estates",
+      kind: "landmark",
+      coords: { lat: 9.6700, lng: 77.2450 }
+    },
+    {
+      name: "Vellimalai Viewpoint",
+      kind: "landmark",
+      coords: { lat: 9.6800, lng: 77.2400 }
+    }
+  ]
+}),
+
+D({
+  slug: "kollihills",
+  place: "Kolli Hills",
+  state: "Tamil Nadu",
+  type: "Hill Station",
+  category: "Hidden Gem",
+  description:
+    "Kolli Hills is a lesser-known mountain retreat famous for its 70 hairpin bends, dense forests, waterfalls, trekking routes, and peaceful natural beauty. It remains one of Tamil Nadu's best hidden gems.",
+  coords: { lat: 11.2480, lng: 78.3410 },
+  imageExt: "jpeg",
+  best_season: "September to February",
+  how_to_reach: {
+    air: "Tiruchirappalli International Airport (120 km)",
+    rail: "Namakkal Railway Station (45 km)",
+    road: "Accessible via Namakkal through mountain roads"
+  },
+  travel_precautions: [
+    "Drive carefully on hairpin bends",
+    "Carry sufficient fuel",
+    "Avoid travel during heavy rainfall"
+  ],
+  travel_tips: [
+    "Visit Agaya Gangai Waterfalls",
+    "Explore local tribal villages",
+    "Enjoy panoramic valley views"
+  ],
+  nearby_poi: [
+    {
+      name: "Agaya Gangai Waterfalls",
+      kind: "landmark",
+      coords: { lat: 11.2360, lng: 78.3370 }
+    },
+    {
+      name: "Arapaleeswarar Temple",
+      kind: "landmark",
+      coords: { lat: 11.2540, lng: 78.3450 }
+    },
+    {
+      name: "Seekuparai Viewpoint",
+      kind: "landmark",
+      coords: { lat: 11.2600, lng: 78.3300 }
+    }
+  ]
+}),
 
   // ============ HIMACHAL PRADESH ============
   D({
@@ -338,7 +1029,210 @@ export const DESTINATIONS: Destination[] = [
       { name: "Reckong Peo", kind: "landmark", coords: { lat: 31.5417, lng: 78.2667 } },
     ],
   }),
+  D({
+  slug: "dharamshala",
+  place: "Dharamshala",
+  state: "Himachal Pradesh",
+  type: "Hill Station",
+  category: "Hotspot",
+  description:
+    "Dharamshala is a beautiful Himalayan town known for its Tibetan culture, monasteries, mountain scenery, and pleasant weather. It serves as the residence of the Dalai Lama and attracts travelers from around the world.",
+  coords: { lat: 32.2190, lng: 76.3234 },
+  imageExt: "jpeg",
+  best_season: "March to June and September to November",
+  how_to_reach: {
+    air: "Kangra Airport (15 km)",
+    rail: "Pathankot Railway Station (85 km)",
+    road: "Well connected by buses and taxis from major Himachal cities"
+  },
+  travel_precautions: [
+    "Carry warm clothing during evenings",
+    "Roads may be slippery during monsoon",
+    "Book accommodation in advance during peak season"
+  ],
+  travel_tips: [
+    "Visit McLeod Ganj and Namgyal Monastery",
+    "Try authentic Tibetan cuisine",
+    "Enjoy sunset views from Naddi Village"
+  ],
+  nearby_poi: [
+    {
+      name: "McLeod Ganj",
+      kind: "landmark",
+      coords: { lat: 32.2426, lng: 76.3219 }
+    },
+    {
+      name: "Namgyal Monastery",
+      kind: "landmark",
+      coords: { lat: 32.2396, lng: 76.3217 }
+    },
+    {
+      name: "Bhagsu Waterfall",
+      kind: "landmark",
+      coords: { lat: 32.2514, lng: 76.3344 }
+    }
+  ]
+}),
+
+D({
+  slug: "kasol",
+  place: "Kasol",
+  state: "Himachal Pradesh",
+  type: "Valley Town",
+  category: "Hotspot",
+  description:
+    "Kasol is a picturesque village located along the Parvati River. Known for its scenic beauty, trekking trails, riverside cafes, and backpacker culture, it is one of Himachal Pradesh's most popular mountain destinations.",
+  coords: { lat: 32.0100, lng: 77.3150 },
+  imageExt: "jpeg",
+  best_season: "March to June and October to November",
+  how_to_reach: {
+    air: "Bhuntar Airport (31 km)",
+    rail: "Joginder Nagar Railway Station (145 km)",
+    road: "Accessible via Bhuntar and Kullu by road"
+  },
+  travel_precautions: [
+    "Carry warm clothing throughout the year",
+    "Avoid trekking alone in remote areas",
+    "Weather can change quickly in the mountains"
+  ],
+  travel_tips: [
+    "Visit Manikaran Sahib nearby",
+    "Walk along the Parvati River",
+    "Explore nearby villages like Chalal and Tosh"
+  ],
+  nearby_poi: [
+    {
+      name: "Parvati River",
+      kind: "landmark",
+      coords: { lat: 32.0090, lng: 77.3140 }
+    },
+    {
+      name: "Manikaran Sahib",
+      kind: "landmark",
+      coords: { lat: 32.0277, lng: 77.3506 }
+    },
+    {
+      name: "Chalal Village",
+      kind: "landmark",
+      coords: { lat: 32.0130, lng: 77.3180 }
+    }
+  ]
+}),
+
+D({
+  slug: "tirthanvalley",
+  place: "Tirthan Valley",
+  state: "Himachal Pradesh",
+  type: "Valley",
+  category: "Hidden Gem",
+  description:
+    "Tirthan Valley is a peaceful Himalayan paradise known for crystal-clear rivers, trout fishing, traditional villages, and access to the Great Himalayan National Park. It is one of Himachal's most beautiful hidden gems.",
+  coords: { lat: 31.6385, lng: 77.3443 },
+  imageExt: "jpeg",
+  best_season: "March to June and September to November",
+  how_to_reach: {
+    air: "Bhuntar Airport (50 km)",
+    rail: "Joginder Nagar Railway Station (120 km)",
+    road: "Accessible by road through Aut and Banjar"
+  },
+  travel_precautions: [
+    "Carry basic medicines",
+    "Weather can become cold at night",
+    "Follow local trekking guidelines"
+  ],
+  travel_tips: [
+    "Visit Great Himalayan National Park",
+    "Stay in riverside homestays",
+    "Ideal destination for nature photography"
+  ],
+  nearby_poi: [
+    {
+      name: "Great Himalayan National Park",
+      kind: "landmark",
+      coords: { lat: 31.7780, lng: 77.3650 }
+    },
+    {
+      name: "Jalori Pass",
+      kind: "landmark",
+      coords: { lat: 31.5330, lng: 77.4070 }
+    },
+    {
+      name: "Banjar",
+      kind: "landmark",
+      coords: { lat: 31.6390, lng: 77.3400 }
+    }
+  ]
+}),
+
+D({
+  slug: "jibhi",
+  place: "Jibhi",
+  state: "Himachal Pradesh",
+  type: "Mountain Village",
+  category: "Hidden Gem",
+  description:
+    "Jibhi is a charming Himalayan village surrounded by pine forests, wooden cottages, waterfalls, and mountain streams. Its peaceful atmosphere makes it a perfect escape from crowded tourist destinations.",
+  coords: { lat: 31.5890, lng: 77.3460 },
+  imageExt: "jpeg",
+  best_season: "March to June and September to November",
+  how_to_reach: {
+    air: "Bhuntar Airport (52 km)",
+    rail: "Joginder Nagar Railway Station (118 km)",
+    road: "Connected via Banjar and Aut"
+  },
+  travel_precautions: [
+    "Carry warm clothes even during summer nights",
+    "Mobile network coverage may be limited",
+    "Roads may become slippery during rain"
+  ],
+  travel_tips: [
+    "Visit Jibhi Waterfall",
+    "Stay in traditional wooden cottages",
+    "Explore nearby Jalori Pass and Serolsar Lake"
+  ],
+  nearby_poi: [
+    {
+      name: "Jibhi Waterfall",
+      kind: "landmark",
+      coords: { lat: 31.5915, lng: 77.3490 }
+    },
+    {
+      name: "Serolsar Lake",
+      kind: "landmark",
+      coords: { lat: 31.5300, lng: 77.4200 }
+    },
+    {
+      name: "Jalori Pass",
+      kind: "landmark",
+      coords: { lat: 31.5330, lng: 77.4070 }
+    }
+  ]
+}),
 ];
+
+//add
+/*
+alibaug
+borong
+daringbadi
+dharamshala
+dzongu
+gupteswar
+jibhi
+kaasplateau
+kasol
+kollihills
+konark
+matheran
+meghamalai
+pelling
+puri
+ravangla
+sandhanvalley
+trithanvalley
+yeracaud
+*/
+
 
 export const STATES = ["Sikkim", "Odisha", "Maharashtra", "Tamil Nadu", "Himachal Pradesh"] as const;
 export const CATEGORIES = ["Hotspot", "Hidden Gem"] as const;
