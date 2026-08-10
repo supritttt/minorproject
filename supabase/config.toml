@@ -1,7 +1,6 @@
-project_id = "voyspiqfzfijwvxhurao"
+project_id = "tnlkqymkvhzzbhnqvwut"
 
 [functions.weather]
 verify_jwt = false
 
 [functions.terra-chat]
-verify_jwt = false
