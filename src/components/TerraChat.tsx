@@ -16,6 +16,7 @@ import {
   type PanInfo,
 } from "framer-motion";
 import { DUR, EASE, modalVariants } from "@/lib/motion";
+import { useChatContext } from "@/contexts/ChatContext";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
@@ -45,7 +46,8 @@ function snapToCorner(x: number, y: number, vw: number, vh: number): Anchor {
   return { x: snapX, y: snapY };
 }
 
-export function TerraChat({ destinationContext }: { destinationContext?: string }) {
+export function TerraChat() {
+  const { destinationContext } = useChatContext();
   const [open, setOpen] = useState(false);
   const [msgs, setMsgs] = useState<Msg[]>([
     {

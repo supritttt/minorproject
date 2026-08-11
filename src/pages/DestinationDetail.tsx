@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
@@ -9,9 +10,9 @@ import { WeatherCard } from "@/components/WeatherCard";
 import { MapView } from "@/components/MapView";
 import { ReviewSection } from "@/components/ReviewSection";
 import { ChatRoom } from "@/components/ChatRoom";
-import { TerraChat } from "@/components/TerraChat";
 import { NearStays } from "@/components/NearStays";
 import { useItinerary } from "@/lib/itinerary";
+import { useChatContext } from "@/contexts/ChatContext";
 import { Reveal } from "@/components/Reveal";
 import { DUR, EASE, fadeUp, staggerContainer } from "@/lib/motion";
 
@@ -19,7 +20,17 @@ export default function DestinationDetail() {
   const { slug } = useParams<{ slug: string }>();
   const d = slug ? getDestination(slug) : undefined;
   const { add, has } = useItinerary();
+  const { setDestinationContext } = useChatContext();
   const reduce = useReducedMotion();
+
+  // Push the destination context to the global TerraChat on mount,
+  // clear it on unmount so other pages get the generic prompt.
+  useEffect(() => {
+    if (!d) return;
+    const ctx = `${d.place}, ${d.state} (${d.category}, ${d.type}). Best season: ${d.best_season}. Description: ${d.description}`;
+    setDestinationContext(ctx);
+    return () => setDestinationContext(undefined);
+  }, [d, setDestinationContext]);
 
   if (!d) {
     return (
@@ -33,7 +44,6 @@ export default function DestinationDetail() {
     );
   }
   const inItinerary = has(d.slug);
-  const ctx = `${d.place}, ${d.state} (${d.category}, ${d.type}). Best season: ${d.best_season}. Description: ${d.description}`;
   const gallery = getGalleryImages(d);
   return (
     <div className="min-h-screen bg-background">
@@ -154,7 +164,6 @@ export default function DestinationDetail() {
           </div>
         </div>
       </main>
-      <TerraChat destinationContext={ctx} />
     </div>
   );
 }

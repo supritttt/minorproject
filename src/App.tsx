@@ -5,6 +5,8 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { ChatProvider } from "@/contexts/ChatContext";
+import { TerraChat } from "@/components/TerraChat";
 import { pageVariants } from "@/lib/motion";
 import Index from "./pages/Index";
 import DestinationDetail from "./pages/DestinationDetail";
@@ -45,11 +47,14 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <AuthProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <AnimatedRoutes />
-        </BrowserRouter>
+        <ChatProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <AnimatedRoutes />
+            <TerraChat />
+          </BrowserRouter>
+        </ChatProvider>
       </AuthProvider>
     </TooltipProvider>
   </QueryClientProvider>

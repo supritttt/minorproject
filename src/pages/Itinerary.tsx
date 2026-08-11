@@ -8,7 +8,6 @@ import { Input } from "@/components/ui/input";
 import { Trash2, Share2, MapPin, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-import { TerraChat } from "@/components/TerraChat";
 import { getDestination, getGalleryImages } from "@/data/destinations";
 import { DUR, EASE, fadeUp, staggerContainer } from "@/lib/motion";
 
@@ -120,7 +119,6 @@ export default function Itinerary() {
           )}
         </div>
       </main>
-      <TerraChat />
     </div>
   );
 }

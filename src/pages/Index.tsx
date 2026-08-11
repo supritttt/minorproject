@@ -7,7 +7,6 @@ import { DESTINATIONS, STATES, CATEGORIES, getCoverImage } from "@/data/destinat
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { MapPin } from "lucide-react";
-import { TerraChat } from "@/components/TerraChat";
 import { Reveal } from "@/components/Reveal";
 import { DUR, EASE, SPRING_LIFT, fadeUp, staggerContainer } from "@/lib/motion";
 
@@ -167,7 +166,6 @@ export default function Index() {
           <p className="text-center text-xs text-muted-foreground mt-8">© {new Date().getFullYear()} HiddenTerra · A non-commercial demo project</p>
         </Reveal>
       </main>
-      <TerraChat />
     </div>
   );
 }

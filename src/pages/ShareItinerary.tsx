@@ -5,7 +5,6 @@ import { Navbar } from "@/components/Navbar";
 import { supabase } from "@/integrations/supabase/client";
 import { getDestination, getGalleryImages } from "@/data/destinations";
 import { MapPin, Loader2 } from "lucide-react";
-import { TerraChat } from "@/components/TerraChat";
 import { DUR, EASE, fadeUp, staggerContainer } from "@/lib/motion";
 
 type Shared = { id: string; title: string; items: any; created_at: string; owner_name: string | null };
@@ -92,7 +91,6 @@ export default function ShareItinerary() {
           )}
         </div>
       </main>
-      <TerraChat />
     </div>
   );
 }
