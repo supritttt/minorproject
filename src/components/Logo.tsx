@@ -41,11 +41,16 @@ export function Logo({
   withText?: boolean;
 }) {
   return (
-    <Link to="/" className="flex items-center">
+    <Link to="/" className="flex items-center gap-2">
       {withText && (
-        <span className="text-2xl font-serif font-bold">
-          Hidden<span className="text-terra">Terra</span>
-        </span>
+        <div>
+          <span
+            className="font-serif font-semibold tracking-tight"
+            style={{ fontSize: size }}
+          >
+            HiddenTerra
+          </span>
+        </div>
       )}
     </Link>
   );
