@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Logo } from "./Logo";
 import { Button } from "@/components/ui/button";
@@ -9,8 +9,10 @@ import { useAuth } from "@/contexts/AuthContext";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { AuthModal } from "./AuthModal";
+import { Magnetic } from "@/components/Magnetic";
 import { DESTINATIONS } from "@/data/destinations";
 import { EASE, DUR, popoverVariants } from "@/lib/motion";
+import { useScrollProgress } from "@/hooks/useScrollProgress";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -21,6 +23,7 @@ export function Navbar() {
   const { user, profile, signOut } = useAuth();
   const navigate = useNavigate();
   const reduce = useReducedMotion();
+  const scrollProgress = useScrollProgress();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -87,10 +90,28 @@ export function Navbar() {
             </AnimatePresence>
           </div>
 
-          <nav className="ml-auto flex items-center gap-2">
-            <Link to="/itinerary" className="hidden sm:inline-flex text-sm text-foreground/80 hover:text-foreground px-3 py-2 rounded-md transition-colors">
-              My Itineraries
-            </Link>
+          <nav className="ml-auto flex items-center gap-1">
+            {[
+              { to: "/", label: "Home", end: true },
+              { to: "/destinations", label: "Destinations", end: false },
+              { to: "/featured", label: "Featured", end: false },
+              { to: "/itinerary", label: "My Itineraries", end: false },
+            ].map((item) => (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                end={item.end}
+                className={({ isActive }) =>
+                  `hidden sm:inline-flex text-sm px-3 py-2 rounded-md transition-colors ${
+                    isActive
+                      ? "text-foreground bg-accent/60"
+                      : "text-foreground/70 hover:text-foreground hover:bg-accent/40"
+                  }`
+                }
+              >
+                {item.label}
+              </NavLink>
+            ))}
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -119,16 +140,33 @@ export function Navbar() {
               </DropdownMenu>
             ) : (
               <>
-                <Button variant="ghost" size="sm" onClick={() => { setAuthMode("signin"); setAuthOpen(true); }}>
-                  Login
-                </Button>
-                <Button size="sm" onClick={() => { setAuthMode("signup"); setAuthOpen(true); }} className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                  Sign Up
-                </Button>
+                <Magnetic max={4}>
+                  <Button variant="ghost" size="sm" onClick={() => { setAuthMode("signin"); setAuthOpen(true); }}>
+                    Login
+                  </Button>
+                </Magnetic>
+                <Magnetic max={4}>
+                  <Button size="sm" onClick={() => { setAuthMode("signup"); setAuthOpen(true); }} className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                    Sign Up
+                  </Button>
+                </Magnetic>
               </>
             )}
           </nav>
         </div>
+
+        {/* Scroll progress — thin gradient bar at the bottom edge of the
+            navbar. Gated on reduced motion via the hook returning 0. */}
+        <div
+          aria-hidden
+          className="absolute bottom-0 left-0 h-[2px] origin-left"
+          style={{
+            width: `${(reduce ? 0 : scrollProgress) * 100}%`,
+            background: "linear-gradient(90deg, hsl(var(--primary)), hsl(var(--secondary)))",
+            boxShadow: "0 0 12px hsl(var(--secondary) / 0.5)",
+            transition: reduce ? undefined : "width 80ms linear",
+          }}
+        />
       </motion.header>
       <AuthModal open={authOpen} onOpenChange={setAuthOpen} initialMode={authMode} />
     </>

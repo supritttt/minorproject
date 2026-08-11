@@ -15,8 +15,9 @@ export function Hero() {
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
         const y = window.scrollY;
-        // gentle parallax: image moves at 35% of scroll
-        setOffset(Math.min(y * 0.35, 200));
+        // Layered parallax: background image drifts slower than the page,
+        // foreground text drifts the opposite direction (closer to viewer).
+        setOffset(Math.min(y, 280));
       });
     };
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -24,11 +25,15 @@ export function Hero() {
     return () => { window.removeEventListener("scroll", onScroll); cancelAnimationFrame(raf); };
   }, [reduce]);
 
+  // Two parallax rates — image sits further away, text closer to the viewer.
+  const imgY = offset * 0.32;       // image moves at ~32% of scroll (drifts down)
+  const textY = -(offset * 0.12);   // text drifts UP slightly (parallax depth)
+
   return (
     <section ref={ref} className="relative h-[78vh] min-h-[520px] max-h-[780px] overflow-hidden">
       <div
         className="absolute inset-0 will-change-transform"
-        style={{ transform: `translate3d(0, ${offset}px, 0)` }}
+        style={{ transform: `translate3d(0, ${imgY}px, 0)` }}
         aria-hidden="true"
       >
         <img
@@ -40,7 +45,10 @@ export function Hero() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-foreground/30 via-foreground/20 to-background/90" />
       </div>
-      <div className="relative h-full container flex items-end pb-16 md:pb-24">
+      <div
+        className="relative h-full container flex items-end pb-16 md:pb-24 will-change-transform"
+        style={{ transform: `translate3d(0, ${textY}px, 0)` }}
+      >
         <div className="max-w-3xl">
           <motion.h1
             className="font-display text-[2.5rem] md:text-6xl lg:text-7xl leading-[1.05] text-background drop-shadow-md"

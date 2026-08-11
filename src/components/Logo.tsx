@@ -12,12 +12,12 @@ export function Logo({
     <Link to="/" className="flex items-center">
       {withText && (
         <motion.span
-          className="font-serif font-semibold tracking-tight inline-block"
+          className="font-display font-semibold tracking-tight inline-block"
           style={{ fontSize: size }}
           whileHover={{ scale: 1.04 }}
           transition={{ type: "spring", stiffness: 320, damping: 22 }}
         >
-          Hidden<span style={{ color: "hsl(18 49% 53%)" }}>Terra</span>
+          Hidden<span className="text-primary">Terra</span>
         </motion.span>
       )}
     </Link>

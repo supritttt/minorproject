@@ -7,8 +7,10 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ChatProvider } from "@/contexts/ChatContext";
 import { TerraChat } from "@/components/TerraChat";
-import { pageVariants } from "@/lib/motion";
-import Index from "./pages/Index";
+import { iosSheetVariants } from "@/lib/motion";
+import Home from "./pages/Home";
+import Destinations from "./pages/Destinations";
+import Featured from "./pages/Featured";
 import DestinationDetail from "./pages/DestinationDetail";
 import Itinerary from "./pages/Itinerary";
 import ShareItinerary from "./pages/ShareItinerary";
@@ -25,13 +27,15 @@ const AnimatedRoutes = () => {
     <AnimatePresence mode="wait" initial={false}>
       <motion.div
         key={location.pathname}
-        variants={reduce ? undefined : pageVariants}
+        variants={reduce ? undefined : iosSheetVariants}
         initial={reduce ? false : "initial"}
         animate={reduce ? undefined : "in"}
         exit={reduce ? undefined : "out"}
       >
         <Routes location={location}>
-          <Route path="/" element={<Index />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/destinations" element={<Destinations />} />
+          <Route path="/featured" element={<Featured />} />
           <Route path="/destination/:slug" element={<DestinationDetail />} />
           <Route path="/itinerary" element={<Itinerary />} />
           <Route path="/share/:token" element={<ShareItinerary />} />

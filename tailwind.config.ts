@@ -14,8 +14,8 @@ export default {
     container: { center: true, padding: "1.25rem", screens: { "2xl": "1320px" } },
     extend: {
       fontFamily: {
-        display: ['"Playfair Display"', 'Georgia', 'serif'],
-        body: ['Lato', 'system-ui', 'sans-serif'],
+        display: ['"Space Grotesk"', '"Inter"', 'system-ui', 'sans-serif'],
+        body: ['Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",

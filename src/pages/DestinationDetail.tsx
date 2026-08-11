@@ -14,7 +14,9 @@ import { NearStays } from "@/components/NearStays";
 import { useItinerary } from "@/lib/itinerary";
 import { useChatContext } from "@/contexts/ChatContext";
 import { Reveal } from "@/components/Reveal";
-import { DUR, EASE, fadeUp, staggerContainer } from "@/lib/motion";
+import { TiltCard } from "@/components/TiltCard";
+import { Magnetic } from "@/components/Magnetic";
+import { SPRING_BUTTON, fadeUp, staggerContainer } from "@/lib/motion";
 
 export default function DestinationDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -65,12 +67,18 @@ export default function DestinationDetail() {
             animate={reduce ? undefined : "show"}
             className="grid gap-3 md:grid-cols-3 mb-8"
           >
-            <motion.img
-              variants={reduce ? undefined : fadeUp}
-              src={gallery[0]}
-              alt={d.place}
-              className="md:col-span-2 md:row-span-2 w-full h-[260px] md:h-[420px] object-cover rounded-xl border border-border"
-            />
+            <TiltCard
+              className="md:col-span-2 md:row-span-2 block rounded-xl"
+              innerClassName="block rounded-xl overflow-hidden border border-border"
+              motionProps={{ variants: reduce ? undefined : fadeUp }}
+              liftY={-2}
+            >
+              <img
+                src={gallery[0]}
+                alt={d.place}
+                className="w-full h-[260px] md:h-[420px] object-cover rounded-xl"
+              />
+            </TiltCard>
             {gallery.slice(1, 5).map((src, i) => (
               <motion.img
                 key={i}
@@ -125,17 +133,19 @@ export default function DestinationDetail() {
               <motion.div
                 initial={reduce ? false : { opacity: 0, y: 12 }}
                 animate={reduce ? undefined : { opacity: 1, y: 0 }}
-                whileTap={reduce ? undefined : { scale: 0.97 }}
-                transition={{ duration: DUR.base, ease: EASE }}
+                whileTap={reduce ? undefined : { scale: 0.96 }}
+                transition={SPRING_BUTTON}
                 className="w-full"
               >
-                <Button
-                  onClick={() => add({ slug: d.slug, place: d.place, state: d.state })}
-                  disabled={inItinerary}
-                  className="w-full bg-primary hover:bg-primary/90"
-                >
-                  {inItinerary ? <><Check className="size-4 mr-2" /> Added to itinerary</> : <><Plus className="size-4 mr-2" /> Add to itinerary</>}
-                </Button>
+                <Magnetic max={5} className="block w-full">
+                  <Button
+                    onClick={() => add({ slug: d.slug, place: d.place, state: d.state })}
+                    disabled={inItinerary}
+                    className="w-full bg-primary hover:bg-primary/90"
+                  >
+                    {inItinerary ? <><Check className="size-4 mr-2" /> Added to itinerary</> : <><Plus className="size-4 mr-2" /> Add to itinerary</>}
+                  </Button>
+                </Magnetic>
               </motion.div>
               <Reveal><WeatherCard lat={d.coords.lat} lng={d.coords.lng} /></Reveal>
               <Reveal>

@@ -17,6 +17,8 @@ import {
 } from "framer-motion";
 import { DUR, EASE, modalVariants } from "@/lib/motion";
 import { useChatContext } from "@/contexts/ChatContext";
+import { useAuth } from "@/contexts/AuthContext";
+import { AuthModal } from "@/components/AuthModal";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
@@ -48,6 +50,13 @@ function snapToCorner(x: number, y: number, vw: number, vh: number): Anchor {
 
 export function TerraChat() {
   const { destinationContext } = useChatContext();
+  const { user, loading: authLoading } = useAuth();
+
+  // Local auth-modal state so the bubble can prompt login / sign up
+  // without lifting state into App.tsx or adding a new context.
+  const [authOpen, setAuthOpen] = useState(false);
+  const [authMode, setAuthMode] = useState<"signin" | "signup">("signin");
+
   const [open, setOpen] = useState(false);
   const [msgs, setMsgs] = useState<Msg[]>([
     {
@@ -73,13 +82,14 @@ export function TerraChat() {
   // without taking layout space.
   const [dragOffset, setDragOffset] = useState<Anchor>({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
+  // Live drag direction (normalized-ish vector). Drives the "lean into the drag"
+  // rotation while the user is moving the bubble. Reset on release.
+  const [dragDir, setDragDir] = useState<Anchor>({ x: 0, y: 0 });
   const dragStart = useRef<{ offset: Anchor; pointer: Anchor } | null>(null);
 
   // Auto-hide on scroll: track last Y + scroll direction.
-  const [scrolling, setScrolling] = useState(false);
   const [hiddenByScroll, setHiddenByScroll] = useState(false);
   const lastScrollY = useRef(0);
-  const scrollTimer = useRef<number | null>(null);
 
   // Whether the user has opened the panel at least once — used to dismiss
   // the notification dot. Persists for the session.
@@ -103,10 +113,6 @@ export function TerraChat() {
           setHiddenByScroll(false);
         }
       }
-
-      setScrolling(true);
-      if (scrollTimer.current) window.clearTimeout(scrollTimer.current);
-      scrollTimer.current = window.setTimeout(() => setScrolling(false), 120);
     };
 
     window.addEventListener("resize", onResize);
@@ -114,7 +120,6 @@ export function TerraChat() {
     return () => {
       window.removeEventListener("resize", onResize);
       window.removeEventListener("scroll", onScroll);
-      if (scrollTimer.current) window.clearTimeout(scrollTimer.current);
     };
   }, [open]);
 
@@ -128,6 +133,15 @@ export function TerraChat() {
   async function send() {
     const text = input.trim();
     if (!text || busy) return;
+
+    // Defensive: if auth state ever drifts (e.g. user signed out mid-session),
+    // re-open the login modal instead of calling the Edge Function anonymously.
+    if (!user) {
+      toast.info("Log in to chat with Terra");
+      setAuthMode("signin");
+      setAuthOpen(true);
+      return;
+    }
 
     const next = [...msgs, { role: "user" as const, content: text }];
     setMsgs(next);
@@ -197,6 +211,9 @@ export function TerraChat() {
     const nx = clamp(dragStart.current.offset.x + dx, 8, maxX);
     const ny = clamp(dragStart.current.offset.y + dy, 8, maxY);
     setDragOffset({ x: nx, y: ny });
+    // Track drag direction so the bubble can lean into the motion.
+    // Raw delta is fine here — the tilt mapping below caps and rescales it.
+    setDragDir({ x: dx, y: dy });
   }
 
   function onPointerUp(e: ReactPointerEvent<HTMLButtonElement>) {
@@ -204,6 +221,16 @@ export function TerraChat() {
     dragStart.current = null;
 
     if (!wasDragging) {
+      // Auth gate: anonymous users must sign in before they can use Terra.
+      if (!user) {
+        toast.info("Log in to chat with Terra");
+        setAuthMode("signin");
+        setAuthOpen(true);
+        setIsDragging(false);
+        setDragDir({ x: 0, y: 0 });
+        (e.currentTarget as HTMLButtonElement).releasePointerCapture(e.pointerId);
+        return;
+      }
       // Treat as click: open the panel, mark opened, snap to nearest corner.
       const { x, y } = snapToCorner(dragOffset.x, dragOffset.y, vp.w, vp.h);
       setDragOffset({ x, y });
@@ -215,6 +242,7 @@ export function TerraChat() {
       setDragOffset({ x, y });
     }
     setIsDragging(false);
+    setDragDir({ x: 0, y: 0 });
     (e.currentTarget as HTMLButtonElement).releasePointerCapture(e.pointerId);
   }
 
@@ -231,13 +259,19 @@ export function TerraChat() {
   const baseY = restY + dragOffset.y;
 
   // When the panel is open, lift the bubble so it sits just above the panel.
-  const panelOffsetX = open
-    ? Math.min(PANEL_WIDTH + PANEL_GAP, vp.w - 32)
-    : 0;
   const panelOffsetY = open ? Math.min(PANEL_HEIGHT + PANEL_GAP, vp.h - 32) : 0;
 
-  // Show bubble only when panel is closed.
-  const showBubble = !open;
+  // Show bubble only when panel is closed AND we've finished the initial
+  // auth-session check (so we don't briefly flash the unauthenticated bubble
+  // for users who are actually signed in).
+  const showBubble = !open && !authLoading;
+
+  // Toy motion: tilt the bubble toward the drag direction while dragging.
+  // X-delta dominates (horizontal swings), Y is a smaller contributor so the
+  // bubble leans more like a swinging pendant than a free-rotating object.
+  // Capped at ±8° to keep it subtle.
+  const tiltX = clamp(dragDir.x / 8, -1, 1) * 8;
+  const dragTilt = isDragging && !reduce ? { rotate: tiltX } : undefined;
 
   return (
     <>
@@ -265,52 +299,140 @@ export function TerraChat() {
             exit={reduce ? undefined : { opacity: 0, scale: 0.6 }}
             transition={{ type: "spring", stiffness: 320, damping: 24 }}
           >
-            {/* Pulse ring — pure decoration, sits behind the bubble */}
-            <motion.span
-              aria-hidden
-              className="absolute inset-0 rounded-full bg-primary/40"
-              animate={
-                reduce
-                  ? undefined
-                  : {
-                      scale: [1, 1.6, 1.6],
-                      opacity: [0.5, 0, 0],
-                    }
-              }
-              transition={{
-                duration: 2.4,
-                ease: "easeOut",
-                repeat: Infinity,
-                repeatDelay: 0.6,
-              }}
-            />
-
-            <motion.button
-              onPointerDown={onPointerDown}
-              onPointerMove={onPointerMove}
-              onPointerUp={onPointerUp}
-              onPointerCancel={onPointerUp}
-              onDragEnd={onDragEnd}
-              drag={false}
-              whileHover={reduce || isDragging ? undefined : { scale: 1.06 }}
-              whileTap={reduce || isDragging ? undefined : { scale: 0.94 }}
-              transition={{ type: "spring", stiffness: 320, damping: 22 }}
-              className={`relative size-16 rounded-full bg-primary text-primary-foreground shadow-lift flex items-center justify-center ${
-                isDragging ? "cursor-grabbing" : "cursor-grab"
-              }`}
-              aria-label="Open Terra chatbot"
-              title="Terra — your India travel guide"
-            >
-              <Sparkles className="size-7" />
-
-              {/* Notification dot — disappears once the user opens the panel */}
-              {!hasOpened && (
-                <span
-                  className="absolute top-1 right-1 size-3 rounded-full bg-amber-400 ring-2 ring-background"
-                  aria-label="New messages"
+            {/* Toy motion: idle bob — separate motion layer so it never
+                fights the button's interactive springs (hover wobble, drag
+                tilt, squash on tap). Skipped entirely under reduced motion
+                or while the panel is open (bubble is "docked"). */}
+            {reduce ? (
+              <>
+                {/* Pulse ring — pure decoration, sits behind the bubble.
+                    Uses secondary (cyan) glow on a dark theme — reads as a
+                    bright AI-product accent rather than a warm "ping". */}
+                <motion.span
+                  aria-hidden
+                  className="absolute inset-0 rounded-full bg-secondary/45"
+                  animate={
+                    reduce
+                      ? undefined
+                      : {
+                          scale: [1, 1.7, 1.7],
+                          opacity: [0.55, 0, 0],
+                        }
+                  }
+                  transition={{
+                    duration: 2.4,
+                    ease: "easeOut",
+                    repeat: Infinity,
+                    repeatDelay: 0.6,
+                  }}
                 />
-              )}
-            </motion.button>
+
+                <motion.button
+                  onPointerDown={onPointerDown}
+                  onPointerMove={onPointerMove}
+                  onPointerUp={onPointerUp}
+                  onPointerCancel={onPointerUp}
+                  onDragEnd={onDragEnd}
+                  drag={false}
+                  animate={dragTilt}
+                  transition={
+                    dragTilt
+                      ? { type: "spring", stiffness: 220, damping: 18 }
+                      : { type: "spring", stiffness: 320, damping: 22 }
+                  }
+                  className={`relative size-16 rounded-full bg-primary text-primary-foreground shadow-lift flex items-center justify-center ${
+                    isDragging ? "cursor-grabbing" : "cursor-grab"
+                  }`}
+                  aria-label="Open Terra chatbot"
+                  title="Terra — your India travel guide"
+                >
+                  <Sparkles className="size-7" />
+
+                  {/* Notification dot — disappears once the user opens the panel */}
+                  {!hasOpened && (
+                    <span
+                      className="absolute top-1 right-1 size-3 rounded-full bg-secondary ring-2 ring-background"
+                      aria-label="New messages"
+                    />
+                  )}
+                </motion.button>
+              </>
+            ) : (
+              <motion.span
+                aria-hidden
+                style={{ display: "block", width: "100%", height: "100%" }}
+                animate={{ y: [0, -4, 0] }}
+                transition={{
+                  duration: 3.6,
+                  ease: "easeInOut",
+                  repeat: Infinity,
+                }}
+              >
+                {/* Pulse ring — pure decoration, sits behind the bubble.
+                    Uses secondary (cyan) glow on a dark theme — reads as a
+                    bright AI-product accent rather than a warm "ping". */}
+                <motion.span
+                  aria-hidden
+                  className="absolute inset-0 rounded-full bg-secondary/45"
+                  animate={{
+                    scale: [1, 1.7, 1.7],
+                    opacity: [0.55, 0, 0],
+                  }}
+                  transition={{
+                    duration: 2.4,
+                    ease: "easeOut",
+                    repeat: Infinity,
+                    repeatDelay: 0.6,
+                  }}
+                />
+
+                <motion.button
+                  onPointerDown={onPointerDown}
+                  onPointerMove={onPointerMove}
+                  onPointerUp={onPointerUp}
+                  onPointerCancel={onPointerUp}
+                  onDragEnd={onDragEnd}
+                  drag={false}
+                  whileHover={
+                    isDragging
+                      ? undefined
+                      : {
+                          scale: 1.08,
+                          rotate: [0, -4, 4, -2, 0], // tiny hat-tip on hover
+                        }
+                  }
+                  whileTap={
+                    isDragging
+                      ? undefined
+                      : {
+                          scaleX: 1.08,
+                          scaleY: 0.88, // squash on click
+                        }
+                  }
+                  animate={dragTilt}
+                  transition={
+                    dragTilt
+                      ? { type: "spring", stiffness: 220, damping: 18 }
+                      : { type: "spring", stiffness: 380, damping: 14, mass: 0.8 }
+                  }
+                  className={`relative size-16 rounded-full bg-primary text-primary-foreground shadow-lift flex items-center justify-center ${
+                    isDragging ? "cursor-grabbing" : "cursor-grab"
+                  }`}
+                  aria-label="Open Terra chatbot"
+                  title="Terra — your India travel guide"
+                >
+                  <Sparkles className="size-7" />
+
+                  {/* Notification dot — disappears once the user opens the panel */}
+                  {!hasOpened && (
+                    <span
+                      className="absolute top-1 right-1 size-3 rounded-full bg-secondary ring-2 ring-background"
+                      aria-label="New messages"
+                    />
+                  )}
+                </motion.button>
+              </motion.span>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
@@ -421,6 +543,12 @@ export function TerraChat() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <AuthModal
+        open={authOpen}
+        onOpenChange={setAuthOpen}
+        initialMode={authMode}
+      />
     </>
   );
 }
