@@ -1,9 +1,11 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { pageVariants } from "@/lib/motion";
 import Index from "./pages/Index";
 import DestinationDetail from "./pages/DestinationDetail";
 import Itinerary from "./pages/Itinerary";
@@ -13,6 +15,32 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+const AnimatedRoutes = () => {
+  const location = useLocation();
+  const reduce = useReducedMotion();
+
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      <motion.div
+        key={location.pathname}
+        variants={reduce ? undefined : pageVariants}
+        initial={reduce ? false : "initial"}
+        animate={reduce ? undefined : "in"}
+        exit={reduce ? undefined : "out"}
+      >
+        <Routes location={location}>
+          <Route path="/" element={<Index />} />
+          <Route path="/destination/:slug" element={<DestinationDetail />} />
+          <Route path="/itinerary" element={<Itinerary />} />
+          <Route path="/share/:token" element={<ShareItinerary />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </motion.div>
+    </AnimatePresence>
+  );
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -20,14 +48,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/destination/:slug" element={<DestinationDetail />} />
-            <Route path="/itinerary" element={<Itinerary />} />
-            <Route path="/share/:token" element={<ShareItinerary />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <AnimatedRoutes />
         </BrowserRouter>
       </AuthProvider>
     </TooltipProvider>

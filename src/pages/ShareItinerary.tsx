@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import { motion, useReducedMotion } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import { supabase } from "@/integrations/supabase/client";
 import { getDestination, getGalleryImages } from "@/data/destinations";
 import { MapPin, Loader2 } from "lucide-react";
 import { TerraChat } from "@/components/TerraChat";
+import { DUR, EASE, fadeUp, staggerContainer } from "@/lib/motion";
 
 type Shared = { id: string; title: string; items: any; created_at: string; owner_name: string | null };
 
@@ -13,6 +15,7 @@ export default function ShareItinerary() {
   const [data, setData] = useState<Shared | null>(null);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState<string | null>(null);
+  const reduce = useReducedMotion();
 
   useEffect(() => {
     if (!token) return;
@@ -32,30 +35,59 @@ export default function ShareItinerary() {
           {loading ? (
             <div className="flex items-center gap-2 text-muted-foreground"><Loader2 className="size-4 animate-spin" /> Loading…</div>
           ) : err ? (
-            <div className="text-center py-16">
+            <motion.div
+              initial={reduce ? false : { opacity: 0, y: 12 }}
+              animate={reduce ? undefined : { opacity: 1, y: 0 }}
+              transition={{ duration: DUR.base, ease: EASE }}
+              className="text-center py-16"
+            >
               <p className="text-destructive mb-2">{err}</p>
               <Link to="/" className="text-primary hover:underline">Back to home</Link>
-            </div>
+            </motion.div>
           ) : data && (
             <>
-              <p className="text-sm text-muted-foreground">Shared by {data.owner_name ?? "a traveller"}</p>
-              <h1 className="font-display text-4xl mt-1 mb-8">{data.title}</h1>
-              <ul className="space-y-3">
+              <motion.p
+                initial={reduce ? false : { opacity: 0, y: 8 }}
+                animate={reduce ? undefined : { opacity: 1, y: 0 }}
+                transition={{ duration: DUR.base, ease: EASE }}
+                className="text-sm text-muted-foreground"
+              >
+                Shared by {data.owner_name ?? "a traveller"}
+              </motion.p>
+              <motion.h1
+                initial={reduce ? false : { opacity: 0, y: 12 }}
+                animate={reduce ? undefined : { opacity: 1, y: 0 }}
+                transition={{ duration: DUR.slow, ease: EASE, delay: 0.05 }}
+                className="font-display text-4xl mt-1 mb-8"
+              >
+                {data.title}
+              </motion.h1>
+              <motion.ul
+                variants={reduce ? undefined : staggerContainer(0.07)}
+                initial={reduce ? false : "hidden"}
+                animate={reduce ? undefined : "show"}
+                className="space-y-3"
+              >
                 {(Array.isArray(data.items) ? data.items : []).map((it: any, idx: number) => {
                   const d = getDestination(it.slug);
                   const img = d ? getGalleryImages(d)[0] : "/placeholder.svg";
                   return (
-                    <li key={it.slug + idx} className="bg-card border border-border rounded-xl p-3 flex items-center gap-3">
+                    <motion.li
+                      key={it.slug + idx}
+                      variants={reduce ? undefined : fadeUp}
+                      transition={{ duration: DUR.base, ease: EASE }}
+                      className="bg-card border border-border rounded-xl p-3 flex items-center gap-3"
+                    >
                       <span className="font-display text-lg w-6 text-muted-foreground">{idx + 1}</span>
                       <img src={img} alt={it.place} className="size-16 rounded-lg object-cover" />
                       <div className="flex-1 min-w-0">
                         <Link to={`/destination/${it.slug}`} className="font-medium hover:text-primary block truncate">{it.place}</Link>
                         <p className="text-xs text-muted-foreground flex items-center gap-1"><MapPin className="size-3" /> {it.state}</p>
                       </div>
-                    </li>
+                    </motion.li>
                   );
                 })}
-              </ul>
+              </motion.ul>
             </>
           )}
         </div>

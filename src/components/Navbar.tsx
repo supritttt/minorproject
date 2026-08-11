@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Logo } from "./Logo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,6 +10,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { AuthModal } from "./AuthModal";
 import { DESTINATIONS } from "@/data/destinations";
+import { EASE, DUR, popoverVariants } from "@/lib/motion";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -16,12 +18,11 @@ export function Navbar() {
   const [authMode, setAuthMode] = useState<"signin" | "signup">("signin");
   const [query, setQuery] = useState("");
   const [showSuggest, setShowSuggest] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const { user, profile, signOut } = useAuth();
   const navigate = useNavigate();
+  const reduce = useReducedMotion();
 
   useEffect(() => {
-    setMounted(true);
     const onScroll = () => setScrolled(window.scrollY > 16);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -34,9 +35,12 @@ export function Navbar() {
 
   return (
     <>
-      <header
-        className={`fixed top-0 inset-x-0 z-40 glass-nav border-b border-border transition-[height,box-shadow,padding] duration-300 ease-soft ${scrolled ? "shadow-soft" : ""} ${mounted ? "opacity-100" : "opacity-0"}`}
-        style={{ transition: "opacity 500ms ease, box-shadow 300ms ease" }}
+      <motion.header
+        initial={reduce ? false : { opacity: 0, y: -12 }}
+        animate={reduce ? undefined : { opacity: 1, y: 0 }}
+        transition={{ duration: DUR.base, ease: EASE }}
+        className={`fixed top-0 inset-x-0 z-40 glass-nav border-b border-border transition-[height,box-shadow,padding] duration-300 ease-soft ${scrolled ? "shadow-soft" : ""}`}
+        style={{ transition: "box-shadow 300ms ease" }}
       >
         <div className={`container flex items-center gap-4 transition-all duration-300 ease-soft ${scrolled ? "h-14" : "h-[72px]"}`}>
           <Logo size={scrolled ? 26 : 30} />
@@ -54,21 +58,33 @@ export function Navbar() {
                 aria-label="Search destinations"
               />
             </div>
-            {showSuggest && suggestions.length > 0 && (
-              <div className="absolute top-full mt-2 inset-x-0 bg-popover border border-border rounded-md shadow-lift overflow-hidden z-50 fade-up">
-                {suggestions.map(d => (
-                  <button
-                    key={d.slug}
-                    onMouseDown={() => navigate(`/destination/${d.slug}`)}
-                    className="w-full flex items-center gap-3 px-4 py-2.5 text-left hover:bg-accent/50 transition-colors"
-                  >
-                    <MapPin className="size-4 text-primary shrink-0" />
-                    <span className="font-medium">{d.place}</span>
-                    <span className="text-xs text-muted-foreground ml-auto">{d.state}</span>
-                  </button>
-                ))}
-              </div>
-            )}
+            <AnimatePresence>
+              {showSuggest && suggestions.length > 0 && (
+                <motion.div
+                  variants={popoverVariants}
+                  initial={reduce ? false : "hidden"}
+                  animate={reduce ? undefined : "show"}
+                  exit={reduce ? undefined : "exit"}
+                  style={{ originY: 0 }}
+                  className="absolute top-full mt-2 inset-x-0 bg-popover border border-border rounded-md shadow-lift overflow-hidden z-50"
+                >
+                  {suggestions.map((d, i) => (
+                    <motion.button
+                      key={d.slug}
+                      onMouseDown={() => navigate(`/destination/${d.slug}`)}
+                      className="w-full flex items-center gap-3 px-4 py-2.5 text-left hover:bg-accent/50 transition-colors"
+                      initial={reduce ? false : { opacity: 0, x: -4 }}
+                      animate={reduce ? undefined : { opacity: 1, x: 0 }}
+                      transition={{ duration: DUR.fast, ease: EASE, delay: i * 0.025 }}
+                    >
+                      <MapPin className="size-4 text-primary shrink-0" />
+                      <span className="font-medium">{d.place}</span>
+                      <span className="text-xs text-muted-foreground ml-auto">{d.state}</span>
+                    </motion.button>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           <nav className="ml-auto flex items-center gap-2">
@@ -113,7 +129,7 @@ export function Navbar() {
             )}
           </nav>
         </div>
-      </header>
+      </motion.header>
       <AuthModal open={authOpen} onOpenChange={setAuthOpen} initialMode={authMode} />
     </>
   );

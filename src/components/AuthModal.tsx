@@ -5,7 +5,9 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
+import { motion, useReducedMotion } from "framer-motion";
 import { z } from "zod";
+import { DUR, EASE } from "@/lib/motion";
 
 const signInSchema = z.object({
   email: z.string().trim().email("Enter a valid email").max(255),
@@ -25,6 +27,7 @@ export function AuthModal({
   const [submitting, setSubmitting] = useState(false);
   const { signIn, signUp } = useAuth();
   const { toast } = useToast();
+  const reduce = useReducedMotion();
 
   useEffect(() => { setMode(initialMode); }, [initialMode, open]);
 
@@ -57,15 +60,27 @@ export function AuthModal({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md bg-card border-border">
-        <DialogHeader>
-          <DialogTitle className="font-display text-2xl">
-            {mode === "signin" ? "Welcome back" : "Create your account"}
-          </DialogTitle>
-          <DialogDescription>
-            {mode === "signin" ? "Sign in to plan trips, leave reviews, and join community chats." : "Join HiddenTerra to unlock reviews, itineraries and chat."}
-          </DialogDescription>
-        </DialogHeader>
-        <form onSubmit={onSubmit} className="space-y-4">
+        <motion.div
+          initial={reduce ? false : { opacity: 0, y: 8 }}
+          animate={reduce ? undefined : { opacity: 1, y: 0 }}
+          transition={{ duration: DUR.base, ease: EASE, delay: 0.05 }}
+        >
+          <DialogHeader>
+            <DialogTitle className="font-display text-2xl">
+              {mode === "signin" ? "Welcome back" : "Create your account"}
+            </DialogTitle>
+            <DialogDescription>
+              {mode === "signin" ? "Sign in to plan trips, leave reviews, and join community chats." : "Join HiddenTerra to unlock reviews, itineraries and chat."}
+            </DialogDescription>
+          </DialogHeader>
+        </motion.div>
+        <motion.form
+          onSubmit={onSubmit}
+          initial={reduce ? false : { opacity: 0, y: 8 }}
+          animate={reduce ? undefined : { opacity: 1, y: 0 }}
+          transition={{ duration: DUR.base, ease: EASE, delay: 0.12 }}
+          className="space-y-4"
+        >
           {mode === "signup" && (
             <div className="space-y-1.5">
               <Label htmlFor="dn">Display name</Label>
@@ -89,7 +104,7 @@ export function AuthModal({
               {mode === "signin" ? "Create account" : "Sign in"}
             </button>
           </p>
-        </form>
+        </motion.form>
       </DialogContent>
     </Dialog>
   );

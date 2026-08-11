@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import { useAuth } from "@/contexts/AuthContext";
 import { useItinerary, saveItineraryToCloud } from "@/lib/itinerary";
@@ -9,6 +10,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { TerraChat } from "@/components/TerraChat";
 import { getDestination, getGalleryImages } from "@/data/destinations";
+import { DUR, EASE, fadeUp, staggerContainer } from "@/lib/motion";
 
 export default function Itinerary() {
   const { items, remove, clear } = useItinerary();
@@ -16,6 +18,7 @@ export default function Itinerary() {
   const [title, setTitle] = useState("My India Trip");
   const [saving, setSaving] = useState(false);
   const [shareUrl, setShareUrl] = useState<string | null>(null);
+  const reduce = useReducedMotion();
 
   async function share() {
     if (!user) { toast.error("Log in to create a shareable link"); return; }
@@ -50,38 +53,70 @@ export default function Itinerary() {
             )}
           </div>
 
-          {shareUrl && (
-            <div className="bg-secondary/40 border border-border rounded-xl p-3 mb-6 text-sm flex items-center gap-2 break-all">
-              <Share2 className="size-4 text-primary shrink-0" />
-              <a href={shareUrl} className="text-primary hover:underline">{shareUrl}</a>
-            </div>
-          )}
+          <AnimatePresence initial={false}>
+            {shareUrl && (
+              <motion.div
+                key="share-url"
+                initial={reduce ? false : { opacity: 0, y: -8, height: 0 }}
+                animate={reduce ? undefined : { opacity: 1, y: 0, height: "auto" }}
+                exit={reduce ? undefined : { opacity: 0, y: -8, height: 0 }}
+                transition={{ duration: DUR.base, ease: EASE }}
+                className="overflow-hidden"
+              >
+                <div className="bg-secondary/40 border border-border rounded-xl p-3 mb-6 text-sm flex items-center gap-2 break-all">
+                  <Share2 className="size-4 text-primary shrink-0" />
+                  <a href={shareUrl} className="text-primary hover:underline">{shareUrl}</a>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {items.length === 0 ? (
-            <div className="text-center py-16 border border-dashed border-border rounded-xl">
+            <motion.div
+              initial={reduce ? false : { opacity: 0, y: 16 }}
+              animate={reduce ? undefined : { opacity: 1, y: 0 }}
+              transition={{ duration: DUR.slow, ease: EASE }}
+              className="text-center py-16 border border-dashed border-border rounded-xl"
+            >
               <p className="text-muted-foreground mb-3">Your itinerary is empty.</p>
               <Link to="/" className="text-primary hover:underline">Browse destinations →</Link>
-            </div>
+            </motion.div>
           ) : (
-            <ul className="space-y-3">
-              {items.map((it, idx) => {
-                const d = getDestination(it.slug);
-                const img = d ? getGalleryImages(d)[0] : "/placeholder.svg";
-                return (
-                  <li key={it.slug} className="bg-card border border-border rounded-xl p-3 flex items-center gap-3">
-                    <span className="font-display text-lg w-6 text-muted-foreground">{idx + 1}</span>
-                    <img src={img} alt={it.place} className="size-16 rounded-lg object-cover" />
-                    <div className="flex-1 min-w-0">
-                      <Link to={`/destination/${it.slug}`} className="font-medium hover:text-primary block truncate">{it.place}</Link>
-                      <p className="text-xs text-muted-foreground flex items-center gap-1"><MapPin className="size-3" /> {it.state}</p>
-                    </div>
-                    <Button variant="ghost" size="icon" onClick={() => remove(it.slug)} aria-label="Remove" className="text-muted-foreground hover:text-destructive">
-                      <Trash2 className="size-4" />
-                    </Button>
-                  </li>
-                );
-              })}
-            </ul>
+            <motion.ul
+              variants={reduce ? undefined : staggerContainer(0.06)}
+              initial={reduce ? false : "hidden"}
+              animate={reduce ? undefined : "show"}
+              className="space-y-3"
+            >
+              <AnimatePresence initial={false}>
+                {items.map((it, idx) => {
+                  const d = getDestination(it.slug);
+                  const img = d ? getGalleryImages(d)[0] : "/placeholder.svg";
+                  return (
+                    <motion.li
+                      key={it.slug}
+                      layout
+                      variants={reduce ? undefined : fadeUp}
+                      initial={reduce ? false : { opacity: 0, x: -12 }}
+                      animate={reduce ? undefined : { opacity: 1, x: 0 }}
+                      exit={reduce ? undefined : { opacity: 0, x: 12, height: 0, marginBottom: 0 }}
+                      transition={{ duration: DUR.base, ease: EASE }}
+                      className="bg-card border border-border rounded-xl p-3 flex items-center gap-3"
+                    >
+                      <span className="font-display text-lg w-6 text-muted-foreground">{idx + 1}</span>
+                      <img src={img} alt={it.place} className="size-16 rounded-lg object-cover" />
+                      <div className="flex-1 min-w-0">
+                        <Link to={`/destination/${it.slug}`} className="font-medium hover:text-primary block truncate">{it.place}</Link>
+                        <p className="text-xs text-muted-foreground flex items-center gap-1"><MapPin className="size-3" /> {it.state}</p>
+                      </div>
+                      <Button variant="ghost" size="icon" onClick={() => remove(it.slug)} aria-label="Remove" className="text-muted-foreground hover:text-destructive">
+                        <Trash2 className="size-4" />
+                      </Button>
+                    </motion.li>
+                  );
+                })}
+              </AnimatePresence>
+            </motion.ul>
           )}
         </div>
       </main>

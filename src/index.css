@@ -128,3 +128,16 @@
   .scrollbar-hide::-webkit-scrollbar { display: none; }
   .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 }
+
+/* Honor user preference for reduced motion across CSS-driven animations. */
+@media (prefers-reduced-motion: reduce) {
+  .badge-pulse,
+  .breathe,
+  .fade-up,
+  .slide-in-bottom,
+  .sun-spin,
+  .cloud-drift,
+  .leaflet-marker-icon.bounce-in {
+    animation: none !important;
+  }
+}

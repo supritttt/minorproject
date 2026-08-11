@@ -1,11 +1,15 @@
 import { useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import heroImage from "@/assets/hero.jpg";
+import { EASE, DUR } from "@/lib/motion";
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState(0);
+  const reduce = useReducedMotion();
 
   useEffect(() => {
+    if (reduce) return; // skip parallax under reduced motion
     let raf = 0;
     const onScroll = () => {
       cancelAnimationFrame(raf);
@@ -18,7 +22,7 @@ export function Hero() {
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => { window.removeEventListener("scroll", onScroll); cancelAnimationFrame(raf); };
-  }, []);
+  }, [reduce]);
 
   return (
     <section ref={ref} className="relative h-[78vh] min-h-[520px] max-h-[780px] overflow-hidden">
@@ -38,18 +42,22 @@ export function Hero() {
       </div>
       <div className="relative h-full container flex items-end pb-16 md:pb-24">
         <div className="max-w-3xl">
-          <h1
-            className="font-display text-[2.5rem] md:text-6xl lg:text-7xl leading-[1.05] text-background drop-shadow-md fade-up"
-            style={{ animationDelay: "120ms" }}
+          <motion.h1
+            className="font-display text-[2.5rem] md:text-6xl lg:text-7xl leading-[1.05] text-background drop-shadow-md"
+            initial={reduce ? false : { opacity: 0, y: 16 }}
+            animate={reduce ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: DUR.slow, ease: EASE, delay: 0.12 }}
           >
             India has a secret.
-          </h1>
-          <p
-            className="mt-3 font-display text-2xl md:text-4xl text-background/95 drop-shadow fade-up"
-            style={{ animationDelay: "260ms" }}
+          </motion.h1>
+          <motion.p
+            className="mt-3 font-display text-2xl md:text-4xl text-background/95 drop-shadow"
+            initial={reduce ? false : { opacity: 0, y: 16 }}
+            animate={reduce ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: DUR.slow, ease: EASE, delay: 0.26 }}
           >
             Wanna Know? <span className="text-accent">Let us show you the way.</span>
-          </p>
+          </motion.p>
         </div>
       </div>
     </section>

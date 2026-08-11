@@ -1,4 +1,5 @@
 import { useParams, Link } from "react-router-dom";
+import { motion, useReducedMotion } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import { getDestination, getGalleryImages } from "@/data/destinations";
 import { Badge } from "@/components/ui/badge";
@@ -11,11 +12,15 @@ import { ChatRoom } from "@/components/ChatRoom";
 import { TerraChat } from "@/components/TerraChat";
 import { NearStays } from "@/components/NearStays";
 import { useItinerary } from "@/lib/itinerary";
+import { Reveal } from "@/components/Reveal";
+import { DUR, EASE, fadeUp, staggerContainer } from "@/lib/motion";
 
 export default function DestinationDetail() {
   const { slug } = useParams<{ slug: string }>();
   const d = slug ? getDestination(slug) : undefined;
   const { add, has } = useItinerary();
+  const reduce = useReducedMotion();
+
   if (!d) {
     return (
       <div className="min-h-screen bg-background">
@@ -33,7 +38,7 @@ export default function DestinationDetail() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <main className="pt-[88px] pb-20 fade-up">
+      <main className="pt-[88px] pb-20">
         <div className="container">
           <Link to="/" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground mb-4">
             <ArrowLeft className="size-4" /> Back
@@ -44,78 +49,107 @@ export default function DestinationDetail() {
           </div>
           <h1 className="font-display text-4xl md:text-5xl mb-6">{d.place}</h1>
 
-          <div className="grid gap-3 md:grid-cols-3 mb-8">
-            <img src={gallery[0]} alt={d.place} className="md:col-span-2 md:row-span-2 w-full h-[260px] md:h-[420px] object-cover rounded-xl border border-border" />
+          <motion.div
+            variants={reduce ? undefined : staggerContainer(0.08)}
+            initial={reduce ? false : "hidden"}
+            animate={reduce ? undefined : "show"}
+            className="grid gap-3 md:grid-cols-3 mb-8"
+          >
+            <motion.img
+              variants={reduce ? undefined : fadeUp}
+              src={gallery[0]}
+              alt={d.place}
+              className="md:col-span-2 md:row-span-2 w-full h-[260px] md:h-[420px] object-cover rounded-xl border border-border"
+            />
             {gallery.slice(1, 5).map((src, i) => (
-              <img key={i} src={src} alt={`${d.place} ${i+2}`} loading="lazy" className="hidden md:block w-full h-[200px] object-cover rounded-xl border border-border" />
+              <motion.img
+                key={i}
+                variants={reduce ? undefined : fadeUp}
+                src={src}
+                alt={`${d.place} ${i+2}`}
+                loading="lazy"
+                className="hidden md:block w-full h-[200px] object-cover rounded-xl border border-border hover:scale-[1.02] transition-transform duration-300 ease-soft"
+              />
             ))}
-          </div>
+          </motion.div>
 
           <div className="grid gap-10 lg:grid-cols-[1fr,320px]">
             <article className="space-y-8">
-              <section>
+              <Reveal as="section">
                 <h2 className="font-display text-2xl mb-3">About {d.place}</h2>
                 <p className="text-foreground/85 leading-relaxed">{d.description}</p>
-              </section>
-              <section>
+              </Reveal>
+              <Reveal as="section">
                 <h2 className="font-display text-2xl mb-3">Best Season to Visit</h2>
                 <p className="text-foreground/85">{d.best_season}</p>
-              </section>
-              <section>
+              </Reveal>
+              <Reveal as="section">
                 <h2 className="font-display text-2xl mb-3">How to Reach</h2>
                 <ul className="space-y-2 text-foreground/85">
                   <li><strong className="text-foreground">By air:</strong> {d.how_to_reach.air}</li>
                   <li><strong className="text-foreground">By rail:</strong> {d.how_to_reach.rail}</li>
                   <li><strong className="text-foreground">By road:</strong> {d.how_to_reach.road}</li>
                 </ul>
-              </section>
-              <section>
+              </Reveal>
+              <Reveal as="section">
                 <h2 className="font-display text-2xl mb-3">Travel Precautions</h2>
                 <ul className="list-disc pl-5 space-y-1.5 text-foreground/85">
                   {d.travel_precautions.map((t, i) => <li key={i}>{t}</li>)}
                 </ul>
-              </section>
-              <section>
+              </Reveal>
+              <Reveal as="section">
                 <h2 className="font-display text-2xl mb-3">Travel Tips</h2>
                 <ul className="list-disc pl-5 space-y-1.5 text-foreground/85">
                   {d.travel_tips.map((t, i) => <li key={i}>{t}</li>)}
                 </ul>
-              </section>
-              <section>
+              </Reveal>
+              <Reveal as="section">
                 <h2 className="font-display text-2xl mb-3">Location</h2>
                 <MapView destination={d} />
-              </section>
-              <NearStays slug={d.slug} />
-              <ReviewSection slug={d.slug} />
-              <ChatRoom slug={d.slug} />
+              </Reveal>
+              <Reveal><NearStays slug={d.slug} /></Reveal>
+              <Reveal><ReviewSection slug={d.slug} /></Reveal>
+              <Reveal><ChatRoom slug={d.slug} /></Reveal>
             </article>
             <aside className="space-y-4">
-              <Button
-                onClick={() => add({ slug: d.slug, place: d.place, state: d.state })}
-                disabled={inItinerary}
-                className="w-full bg-primary hover:bg-primary/90"
+              <motion.div
+                initial={reduce ? false : { opacity: 0, y: 12 }}
+                animate={reduce ? undefined : { opacity: 1, y: 0 }}
+                whileTap={reduce ? undefined : { scale: 0.97 }}
+                transition={{ duration: DUR.base, ease: EASE }}
+                className="w-full"
               >
-                {inItinerary ? <><Check className="size-4 mr-2" /> Added to itinerary</> : <><Plus className="size-4 mr-2" /> Add to itinerary</>}
-              </Button>
-              <WeatherCard lat={d.coords.lat} lng={d.coords.lng} />
-              <div className="bg-card border border-border rounded-xl p-5">
-                <h3 className="font-display text-lg mb-3">Coordinates</h3>
-                <p className="text-sm text-muted-foreground">Lat {d.coords.lat}°<br/>Lng {d.coords.lng}°</p>
-              </div>
-              <div className="bg-card border border-border rounded-xl p-5">
-                <h3 className="font-display text-lg mb-3">Nearby Points of Interest</h3>
-                <ul className="space-y-2 text-sm">
-                  {d.nearby_poi.map((p, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <MapPin className="size-4 text-primary mt-0.5 shrink-0" />
-                      <div>
-                        <p className="font-medium">{p.name}</p>
-                        <p className="text-xs text-muted-foreground capitalize">{p.kind}</p>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                <Button
+                  onClick={() => add({ slug: d.slug, place: d.place, state: d.state })}
+                  disabled={inItinerary}
+                  className="w-full bg-primary hover:bg-primary/90"
+                >
+                  {inItinerary ? <><Check className="size-4 mr-2" /> Added to itinerary</> : <><Plus className="size-4 mr-2" /> Add to itinerary</>}
+                </Button>
+              </motion.div>
+              <Reveal><WeatherCard lat={d.coords.lat} lng={d.coords.lng} /></Reveal>
+              <Reveal>
+                <div className="bg-card border border-border rounded-xl p-5">
+                  <h3 className="font-display text-lg mb-3">Coordinates</h3>
+                  <p className="text-sm text-muted-foreground">Lat {d.coords.lat}°<br/>Lng {d.coords.lng}°</p>
+                </div>
+              </Reveal>
+              <Reveal>
+                <div className="bg-card border border-border rounded-xl p-5">
+                  <h3 className="font-display text-lg mb-3">Nearby Points of Interest</h3>
+                  <ul className="space-y-2 text-sm">
+                    {d.nearby_poi.map((p, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <MapPin className="size-4 text-primary mt-0.5 shrink-0" />
+                        <div>
+                          <p className="font-medium">{p.name}</p>
+                          <p className="text-xs text-muted-foreground capitalize">{p.kind}</p>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
             </aside>
           </div>
         </div>
