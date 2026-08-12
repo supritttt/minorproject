@@ -143,7 +143,7 @@ D({
   category: "Hotspot",
   description:
     "Ravangla is a scenic mountain town famous for Buddha Park, panoramic Himalayan views, and peaceful surroundings. It serves as a gateway to several trekking routes and monasteries.",
-  coords: { lat: 27.3125, lng: 88.3630 },
+  coords: { lat: 27.3054, lng: 88.3655 },
   imageExt: "jpeg",
   best_season: "March to June and September to December",
   how_to_reach: {
@@ -274,7 +274,7 @@ D({
   D({
     slug: "simlipal_national_park", place: "Simlipal National Park", state: "Odisha", type: "Wildlife", category: "Hotspot",
     description: "Simlipal National Park is one of India's largest tiger reserves and a UNESCO Biosphere Reserve, covering over 2,750 square kilometres of dense sal forests, plateaus, and cascading waterfalls in the Mayurbhanj district of Odisha. The park is home to Royal Bengal tigers, elephants, leopards, and over 300 species of birds. The spectacular Barehipani and Joranda waterfalls, among the tallest in India, lie within the park's boundaries and make for unforgettable treks. Simlipal is also culturally significant as the homeland of the Kolha and Ho tribes, whose traditions are deeply rooted in the forest.",
-    coords: { lat: 21.7833, lng: 86.5000 }, imageExt: "jpeg",
+    coords: { lat: 21.6500, lng: 86.4500 }, imageExt: "jpeg",
     best_season: "November to mid-June (park closes mid-June to October for monsoon)",
     how_to_reach: { air: "Bhubaneswar (BBI), 270 km; Kolkata (CCU), 240 km.", rail: "Baripada Railway Station, 25 km from Pithabata gate.", road: "Pithabata gate (north) and Jashipur gate (west) — entry permits required at gate." },
     travel_precautions: ["Park closed mid-June to October — verify dates before travel", "Wild elephants common — never leave vehicles outside designated zones", "Carry mosquito repellent and long sleeves at dusk", "Mobile network sparse — inform someone of your route"],
@@ -304,7 +304,7 @@ D({
   D({
     slug: "deomali_hills", place: "Deomali Hills", state: "Odisha", type: "Hill", category: "Hidden Gem",
     description: "Deomali is the highest peak in Odisha, rising to 1,672 metres in the Koraput district near the Andhra Pradesh border, and it remains almost entirely unknown to mainstream tourism. The surrounding hills are blanketed in dense forests, coffee plantations, and tribal villages that have preserved their way of life for centuries. The journey to Deomali takes you through the Koraput tribal belt, where colourful weekly haats (markets) offer a vivid glimpse into the culture of the Kondh and Gadaba communities. On a clear day, the summit offers views stretching across Odisha and into the neighbouring state.",
-    coords: { lat: 18.4000, lng: 82.9333 }, imageExt: "jpeg",
+    coords: { lat: 18.3750, lng: 82.9230 }, imageExt: "jpeg",
     best_season: "October to February (cool, clear views)",
     how_to_reach: { air: "Visakhapatnam (VTZ), 220 km.", rail: "Koraput Railway Station, 50 km.", road: "Drive from Koraput via Pottangi (2.5 hr); last few km are rough — SUV recommended." },
     travel_precautions: ["Mobile network patchy beyond Koraput town", "Tribal villages — always ask before photographing people", "Avoid driving after sunset — roads are unlit and remote", "Carry first-aid; nearest hospital is in Koraput"],

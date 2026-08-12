@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import { getDestination, getGalleryImages } from "@/data/destinations";
+import { getStays } from "@/data/stays";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, MapPin, Plus, Check } from "lucide-react";
@@ -121,11 +122,11 @@ export default function DestinationDetail() {
                   {d.travel_tips.map((t, i) => <li key={i}>{t}</li>)}
                 </ul>
               </Reveal>
-              <Reveal as="section">
+              <Reveal as="section" id="map-section">
                 <h2 className="font-display text-2xl mb-3">Location</h2>
-                <MapView destination={d} />
+                <MapView destination={d} stays={getStays(d.slug) ? Object.values(getStays(d.slug)!).flat() : undefined} />
               </Reveal>
-              <Reveal><NearStays slug={d.slug} /></Reveal>
+              <Reveal><NearStays slug={d.slug} destinationCoords={d.coords} /></Reveal>
               <Reveal><ReviewSection slug={d.slug} /></Reveal>
               <Reveal><ChatRoom slug={d.slug} /></Reveal>
             </article>

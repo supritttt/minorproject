@@ -2,51 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
-/* HiddenTerra design system. All colors HSL. Midnight Aurora — premium & cool. */
+/* HiddenTerra design system. All colors HSL. Coastal Trust — clean & inviting. */
 @layer base {
   :root {
-    /* Palette — Midnight Aurora */
-    --background: 230 50% 9%;          /* #0B1020 deep midnight */
-    --foreground: 228 33% 93%;         /* #E6E9F5 cool off-white */
+    /* Palette — Coastal Trust (60% off-white / 30% ocean blue / 10% sandy gold) */
+    --background: 220 33% 97%;         /* #F4F6F9 soft off-white */
+    --foreground: 212 71% 23%;         /* #113F67 deep ocean blue (headers/text) */
 
-    --card: 228 41% 15%;               /* #131A33 */
-    --card-foreground: 228 33% 93%;
+    --card: 0 0% 100%;                 /* pure white card on off-white canvas */
+    --card-foreground: 212 71% 23%;
 
-    --popover: 228 45% 12%;
-    --popover-foreground: 228 33% 93%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 212 71% 23%;
 
-    --primary: 232 100% 74%;           /* #7C8CFF electric indigo */
-    --primary-foreground: 230 50% 9%;
+    --primary: 212 71% 23%;            /* #113F67 deep ocean blue */
+    --primary-foreground: 220 33% 97%;
 
-    --secondary: 187 95% 64%;          /* #5EE2FF cyan glow */
-    --secondary-foreground: 230 50% 9%;
+    --secondary: 212 50% 40%;          /* lighter ocean for secondary surfaces */
+    --secondary-foreground: 220 33% 97%;
 
-    --muted: 228 30% 18%;
-    --muted-foreground: 228 20% 65%;
+    --muted: 220 25% 92%;
+    --muted-foreground: 212 35% 38%;
 
-    --accent: 187 95% 64%;             /* cyan as accent */
-    --accent-foreground: 230 50% 9%;
+    --accent: 32 49% 64%;              /* #D4A373 sandy gold (CTAs) */
+    --accent-foreground: 212 71% 23%;
 
-    --destructive: 0 75% 60%;
+    --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 228 30% 25%;
-    --input: 228 30% 25%;
-    --ring: 232 100% 74%;
+    --border: 220 25% 86%;
+    --input: 220 25% 86%;
+    --ring: 32 49% 64%;
 
     --radius: 0.625rem;
 
-    /* Aurora gradients & glow shadows */
-    --gradient-warm: linear-gradient(135deg, hsl(232 100% 74% / 0.9), hsl(187 95% 64% / 0.7));
-    --gradient-sage: linear-gradient(135deg, hsl(228 50% 18% / 0.85), hsl(232 60% 28% / 0.75));
-    --shadow-soft: 0 4px 24px -8px hsl(232 100% 60% / 0.25);
-    --shadow-lift: 0 12px 40px -12px hsl(232 100% 50% / 0.4), 0 0 0 1px hsl(187 95% 64% / 0.06);
+    /* Coastal gradients & shadows — light, airy, premium */
+    --gradient-warm: linear-gradient(135deg, hsl(212 71% 23%) 0%, hsl(32 49% 64%) 100%);
+    --gradient-sage: linear-gradient(135deg, hsl(220 33% 97%) 0%, hsl(220 25% 92%) 100%);
+    --shadow-soft: 0 4px 24px -8px hsl(212 71% 23% / 0.15);
+    --shadow-lift: 0 12px 40px -12px hsl(212 71% 23% / 0.25), 0 0 0 1px hsl(32 49% 64% / 0.08);
 
     --transition-smooth: all 320ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Palette stays cool always — no dark mode toggle yet */
-  .dark { color-scheme: dark; }
+  /* No dark mode toggle yet — light coastal palette */
+  .dark { color-scheme: light; }
 }
 
 @layer base {
@@ -55,7 +55,7 @@
   body {
     @apply text-foreground antialiased;
     background-color: hsl(var(--background));
-    background-image: linear-gradient(135deg, hsl(230 50% 9%) 0%, hsl(228 41% 13%) 50%, hsl(232 50% 11%) 100%);
+    background-image: linear-gradient(135deg, hsl(220 33% 97%) 0%, hsl(220 28% 94%) 50%, hsl(220 33% 97%) 100%);
     background-attachment: fixed;
     font-family: 'Inter', system-ui, sans-serif;
     font-weight: 400;
@@ -65,6 +65,7 @@
     font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
     font-weight: 600;
     letter-spacing: -0.02em;
+    color: hsl(var(--foreground));
   }
 }
 
@@ -73,10 +74,10 @@
   .font-body { font-family: 'Inter', system-ui, sans-serif; }
 
   .glass-nav {
-    background: hsl(228 50% 9% / 0.7);
+    background: hsl(220 33% 97% / 0.85);
     backdrop-filter: saturate(140%) blur(14px);
     -webkit-backdrop-filter: saturate(140%) blur(14px);
-    border-bottom: 1px solid hsl(228 30% 25% / 0.6);
+    border-bottom: 1px solid hsl(220 25% 86% / 0.7);
   }
 
   .badge-pulse {
@@ -91,8 +92,8 @@
     animation: breathe 3.2s ease-in-out infinite;
   }
   @keyframes breathe {
-    0%, 100% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0.5), 0 0 24px hsl(187 95% 64% / 0.25), 0 8px 24px -6px hsl(0 0% 0% / 0.4); }
-    50% { box-shadow: 0 0 0 18px hsl(var(--primary) / 0), 0 0 24px hsl(187 95% 64% / 0.25), 0 8px 24px -6px hsl(0 0% 0% / 0.5); }
+    0%, 100% { box-shadow: 0 0 0 0 hsl(var(--accent) / 0.5), 0 0 24px hsl(32 49% 64% / 0.25), 0 8px 24px -6px hsl(212 71% 23% / 0.2); }
+    50% { box-shadow: 0 0 0 18px hsl(var(--accent) / 0), 0 0 24px hsl(32 49% 64% / 0.25), 0 8px 24px -6px hsl(212 71% 23% / 0.25); }
   }
 
   .fade-up {

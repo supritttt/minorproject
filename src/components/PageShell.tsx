@@ -23,17 +23,17 @@ export function PageShell({
 }) {
   return (
     <div className="min-h-screen bg-background overflow-hidden">
-      {/* Aurora background mesh — fixed, pointer-events-none, behind content.
-          Two large blurred radial gradients (indigo & cyan) plus a third
-          midnight wash give the page a glassy "AI-product" backdrop. */}
+      {/* Coastal background mesh — fixed, pointer-events-none, behind content.
+          Soft ocean-blue + sandy-gold radial washes give the page a clean,
+          airy "travel-product" backdrop aligned with the Coastal Trust palette. */}
       <div aria-hidden className="fixed inset-0 -z-10 pointer-events-none">
         <div
           className="absolute inset-0"
           style={{
             backgroundImage: [
-              "radial-gradient(60rem 60rem at 0% 0%, hsl(232 100% 74% / 0.22), transparent 60%)",
-              "radial-gradient(50rem 50rem at 100% 100%, hsl(187 95% 64% / 0.18), transparent 60%)",
-              "radial-gradient(40rem 40rem at 50% 40%, hsl(228 60% 40% / 0.18), transparent 70%)",
+              "radial-gradient(60rem 60rem at 0% 0%, hsl(212 71% 23% / 0.08), transparent 60%)",
+              "radial-gradient(50rem 50rem at 100% 100%, hsl(32 49% 64% / 0.10), transparent 60%)",
+              "radial-gradient(40rem 40rem at 50% 40%, hsl(212 50% 40% / 0.06), transparent 70%)",
             ].join(","),
           }}
         />

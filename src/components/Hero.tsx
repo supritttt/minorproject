@@ -43,7 +43,7 @@ export function Hero() {
           width={1920}
           height={1080}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-foreground/30 via-foreground/20 to-background/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/15 to-background/95" />
       </div>
       <div
         className="relative h-full container flex items-end pb-16 md:pb-24 will-change-transform"
