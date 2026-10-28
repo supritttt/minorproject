@@ -50,8 +50,20 @@ export function Hero() {
         style={{ transform: `translate3d(0, ${textY}px, 0)` }}
       >
         <div className="max-w-3xl">
+          <motion.div
+            initial={reduce ? false : { opacity: 0, y: 12 }}
+            animate={reduce ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: DUR.base, ease: EASE, delay: 0.05 }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md border border-heather/40 mb-4"
+          >
+            <span className="size-2 rounded-full bg-electric animate-pulse shadow-[0_0_8px_#E4FF3B]" />
+            <span className="text-xs uppercase tracking-wider text-porcelain-100 font-medium">
+              Curated Escapes & Hidden Wonders
+            </span>
+          </motion.div>
+
           <motion.h1
-            className="font-display text-[2.5rem] md:text-6xl lg:text-7xl leading-[1.05] text-background drop-shadow-md"
+            className="font-display text-[2.5rem] md:text-6xl lg:text-7xl leading-[1.05] text-porcelain drop-shadow-md"
             initial={reduce ? false : { opacity: 0, y: 16 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
             transition={{ duration: DUR.slow, ease: EASE, delay: 0.12 }}
@@ -59,12 +71,15 @@ export function Hero() {
             India has a secret.
           </motion.h1>
           <motion.p
-            className="mt-3 font-display text-2xl md:text-4xl text-background/95 drop-shadow"
+            className="mt-3 font-display text-2xl md:text-4xl text-porcelain-50/95 drop-shadow"
             initial={reduce ? false : { opacity: 0, y: 16 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
             transition={{ duration: DUR.slow, ease: EASE, delay: 0.26 }}
           >
-            Wanna Know? <span className="text-accent">Let us show you the way.</span>
+            Wanna Know?{" "}
+            <span className="text-electric font-semibold drop-shadow-[0_0_12px_rgba(228,255,59,0.4)]">
+              Let us show you the way.
+            </span>
           </motion.p>
         </div>
       </div>

@@ -102,10 +102,10 @@ export function Navbar() {
                 to={item.to}
                 end={item.end}
                 className={({ isActive }) =>
-                  `hidden sm:inline-flex text-sm px-3 py-2 rounded-md transition-colors ${
+                  `hidden sm:inline-flex text-sm font-medium px-3.5 py-1.5 rounded-full transition-all ${
                     isActive
-                      ? "text-foreground bg-accent/60"
-                      : "text-foreground/70 hover:text-foreground hover:bg-accent/40"
+                      ? "text-heather-700 bg-heather/20 border border-heather/40 shadow-sm"
+                      : "text-foreground/75 hover:text-foreground hover:bg-porcelain/60"
                   }`
                 }
               >
@@ -141,12 +141,16 @@ export function Navbar() {
             ) : (
               <>
                 <Magnetic max={4}>
-                  <Button variant="ghost" size="sm" onClick={() => { setAuthMode("signin"); setAuthOpen(true); }}>
+                  <Button variant="ghost" size="sm" onClick={() => { setAuthMode("signin"); setAuthOpen(true); }} className="hover:bg-porcelain/70">
                     Login
                   </Button>
                 </Magnetic>
                 <Magnetic max={4}>
-                  <Button size="sm" onClick={() => { setAuthMode("signup"); setAuthOpen(true); }} className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                  <Button
+                    size="sm"
+                    onClick={() => { setAuthMode("signup"); setAuthOpen(true); }}
+                    className="bg-heather hover:bg-heather-600 text-white font-medium shadow-sm transition-all"
+                  >
                     Sign Up
                   </Button>
                 </Magnetic>
@@ -159,11 +163,11 @@ export function Navbar() {
             navbar. Gated on reduced motion via the hook returning 0. */}
         <div
           aria-hidden
-          className="absolute bottom-0 left-0 h-[2px] origin-left"
+          className="absolute bottom-0 left-0 h-[2.5px] origin-left"
           style={{
             width: `${(reduce ? 0 : scrollProgress) * 100}%`,
-            background: "linear-gradient(90deg, hsl(var(--primary)), hsl(var(--secondary)))",
-            boxShadow: "0 0 12px hsl(var(--secondary) / 0.5)",
+            background: "linear-gradient(90deg, #9B7ED6, #E4FF3B)",
+            boxShadow: "0 0 12px rgba(228, 255, 59, 0.6)",
             transition: reduce ? undefined : "width 80ms linear",
           }}
         />

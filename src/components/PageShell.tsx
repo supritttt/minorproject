@@ -23,17 +23,16 @@ export function PageShell({
 }) {
   return (
     <div className="min-h-screen bg-background overflow-hidden">
-      {/* Coastal background mesh — fixed, pointer-events-none, behind content.
-          Soft ocean-blue + sandy-gold radial washes give the page a clean,
-          airy "travel-product" backdrop aligned with the Coastal Trust palette. */}
+      {/* Ambient background mesh — Porcelain Beige, Heather Purple, and Electric Lemon subtle highlights */}
       <div aria-hidden className="fixed inset-0 -z-10 pointer-events-none">
         <div
           className="absolute inset-0"
           style={{
             backgroundImage: [
-              "radial-gradient(60rem 60rem at 0% 0%, hsl(212 71% 23% / 0.08), transparent 60%)",
-              "radial-gradient(50rem 50rem at 100% 100%, hsl(32 49% 64% / 0.10), transparent 60%)",
-              "radial-gradient(40rem 40rem at 50% 40%, hsl(212 50% 40% / 0.06), transparent 70%)",
+              "radial-gradient(65rem 65rem at 5% 0%, hsl(var(--porcelain) / 0.7), transparent 65%)",
+              "radial-gradient(55rem 55rem at 95% 85%, hsl(var(--heather) / 0.18), transparent 60%)",
+              "radial-gradient(45rem 45rem at 50% 30%, hsl(var(--heather) / 0.10), transparent 70%)",
+              "radial-gradient(30rem 30rem at 85% 15%, hsl(var(--electric-lemon) / 0.08), transparent 60%)",
             ].join(","),
           }}
         />

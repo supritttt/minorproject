@@ -36,11 +36,11 @@ export default function Destinations() {
       <main className="pt-[72px]">
         {/* Filters */}
         <Reveal as="section" className="container -mt-10 relative z-10 mb-12">
-          <div className="bg-card border border-border rounded-xl shadow-soft p-4 md:p-6 grid gap-3 md:grid-cols-[1fr,1fr,auto] items-end">
+          <div className="bg-card/90 backdrop-blur-md border border-heather/25 rounded-xl shadow-soft p-4 md:p-6 grid gap-3 md:grid-cols-[1fr,1fr,auto] items-end bg-gradient-to-r from-porcelain/40 to-card">
             <div>
               <label className="text-sm font-medium text-foreground/80 mb-1.5 block">State</label>
               <Select value={stateFilter} onValueChange={setStateFilter}>
-                <SelectTrigger className="bg-background">
+                <SelectTrigger className="bg-background/80 border-border">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -56,7 +56,7 @@ export default function Destinations() {
             <div>
               <label className="text-sm font-medium text-foreground/80 mb-1.5 block">Category</label>
               <Select value={catFilter} onValueChange={setCatFilter}>
-                <SelectTrigger className="bg-background">
+                <SelectTrigger className="bg-background/80 border-border">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -69,7 +69,7 @@ export default function Destinations() {
                 </SelectContent>
               </Select>
             </div>
-            <p className="text-sm text-muted-foreground md:text-right">{filtered.length} destinations</p>
+            <p className="text-sm text-muted-foreground md:text-right font-medium">{filtered.length} destinations</p>
           </div>
         </Reveal>
 
@@ -94,33 +94,35 @@ export default function Destinations() {
               <TiltCard
                 key={d.slug}
                 className="block h-full"
-                innerClassName="block h-full rounded-xl overflow-hidden bg-card border border-border shadow-soft hover:shadow-lift transition-shadow duration-300 ease-soft"
+                innerClassName="block h-full rounded-xl overflow-hidden bg-card border border-border/80 shadow-soft hover:shadow-lift hover:border-heather/40 transition-all duration-300 ease-soft"
                 motionProps={cardMotion ?? {}}
               >
                 <Link to={`/destination/${d.slug}`} className="group block h-full">
-                  <div className="aspect-[4/3] overflow-hidden">
+                  <div className="aspect-[4/3] overflow-hidden relative">
                     <img
                       src={getCoverImage(d)}
                       alt={d.place}
                       loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-500 ease-soft group-hover:scale-105"
                     />
-                  </div>
-                  <div className="p-4">
-                    <div className="flex items-center justify-between mb-1.5 gap-2">
-                      <h3 className="font-display text-lg leading-tight truncate">{d.place}</h3>
+                    <div className="absolute top-3 right-3">
                       <Badge
                         className={`${
                           d.category === "Hotspot"
-                            ? "bg-primary text-primary-foreground"
-                            : "bg-secondary text-secondary-foreground"
-                        } shrink-0`}
+                            ? "badge-lemon"
+                            : "badge-heather"
+                        } shrink-0 px-2.5 py-0.5 text-[11px] shadow-sm`}
                       >
-                        {d.category === "Hotspot" ? "Hotspot" : "Hidden"}
+                        {d.category === "Hotspot" ? "Hotspot" : "Hidden Gem"}
                       </Badge>
                     </div>
+                  </div>
+                  <div className="p-4">
+                    <div className="flex items-center justify-between mb-1.5 gap-2">
+                      <h3 className="font-display text-lg leading-tight truncate group-hover:text-heather-700 transition-colors">{d.place}</h3>
+                    </div>
                     <p className="text-xs text-muted-foreground flex items-center gap-1 mb-2">
-                      <MapPin className="size-3" /> {d.state} · {d.type}
+                      <MapPin className="size-3 text-heather" /> {d.state} · {d.type}
                     </p>
                     <p className="text-sm text-foreground/80 line-clamp-2">{d.description}</p>
                   </div>

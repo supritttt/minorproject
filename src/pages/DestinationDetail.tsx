@@ -57,8 +57,8 @@ export default function DestinationDetail() {
             <ArrowLeft className="size-4" /> Back
           </Link>
           <div className="flex flex-wrap items-center gap-3 mb-2">
-            <Badge className={d.category === "Hotspot" ? "bg-primary text-primary-foreground" : "bg-secondary text-secondary-foreground"}>{d.category}</Badge>
-            <span className="text-sm text-muted-foreground flex items-center gap-1"><MapPin className="size-3.5" />{d.state} · {d.type}</span>
+            <Badge className={`${d.category === "Hotspot" ? "badge-lemon" : "badge-heather"} text-xs px-3 py-0.5 shadow-sm`}>{d.category}</Badge>
+            <span className="text-sm text-muted-foreground flex items-center gap-1"><MapPin className="size-3.5 text-heather" />{d.state} · {d.type}</span>
           </div>
           <h1 className="font-display text-4xl md:text-5xl mb-6">{d.place}</h1>
 
@@ -142,13 +142,13 @@ export default function DestinationDetail() {
                   <Button
                     onClick={() => add({ slug: d.slug, place: d.place, state: d.state })}
                     disabled={inItinerary}
-                    className="w-full bg-primary hover:bg-primary/90"
+                    className="w-full bg-heather hover:bg-heather-600 text-white font-semibold transition-all shadow-soft hover:shadow-lift"
                   >
-                    {inItinerary ? <><Check className="size-4 mr-2" /> Added to itinerary</> : <><Plus className="size-4 mr-2" /> Add to itinerary</>}
+                    {inItinerary ? <><Check className="size-4 mr-2 text-electric" /> Added to itinerary</> : <><Plus className="size-4 mr-2" /> Add to itinerary</>}
                   </Button>
                 </Magnetic>
               </motion.div>
-              <Reveal><WeatherCard lat={d.coords.lat} lng={d.coords.lng} /></Reveal>
+              <WeatherCard lat={d.coords.lat} lng={d.coords.lng} />
               <Reveal>
                 <div className="bg-card border border-border rounded-xl p-5">
                   <h3 className="font-display text-lg mb-3">Coordinates</h3>
