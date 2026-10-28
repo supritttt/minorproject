@@ -49,35 +49,35 @@ export function ReviewSection({ slug }: { slug: string }) {
       </div>
 
       {user ? (
-        <div className="bg-card border border-border rounded-xl p-4 mb-4">
+        <div className="bg-card border border-heather/30 rounded-xl p-4 mb-4 shadow-soft">
           <div className="flex items-center gap-1 mb-2">
             {[1,2,3,4,5].map(n => (
               <button key={n} onClick={() => setRating(n)} aria-label={`${n} stars`} className="p-0.5">
-                <Star className={`size-5 transition-colors ${n <= rating ? "fill-primary text-primary" : "text-muted-foreground"}`} />
+                <Star className={`size-5 transition-colors ${n <= rating ? "fill-electric text-[#9B7ED6]" : "text-muted-foreground"}`} />
               </button>
             ))}
           </div>
-          <Textarea value={comment} onChange={e => setComment(e.target.value)} placeholder="Share your experience…" rows={3} className="mb-2" />
-          <Button onClick={submit} disabled={submitting} className="bg-primary hover:bg-primary/90">
+          <Textarea value={comment} onChange={e => setComment(e.target.value)} placeholder="Share your experience…" rows={3} className="mb-2 bg-porcelain/40 border-heather/30 text-[#26153B]" />
+          <Button onClick={submit} disabled={submitting} className="bg-electric hover:bg-[#d5f325] text-[#190C28] font-bold shadow-[0_0_12px_rgba(228,255,59,0.35)]">
             {submitting ? <Loader2 className="size-4 animate-spin mr-2" /> : null} Post review
           </Button>
         </div>
       ) : (
-        <p className="text-sm text-muted-foreground bg-muted/40 border border-border rounded-xl p-3 mb-4">Log in to leave a review.</p>
+        <p className="text-sm text-muted-foreground bg-porcelain/60 border border-heather/25 rounded-xl p-3 mb-4">Log in to leave a review.</p>
       )}
 
       {loading ? (
-        <div className="text-muted-foreground flex items-center gap-2"><Loader2 className="size-4 animate-spin" /> Loading…</div>
+        <div className="text-muted-foreground flex items-center gap-2"><Loader2 className="size-4 animate-spin text-heather" /> Loading…</div>
       ) : reviews.length === 0 ? (
         <p className="text-sm text-muted-foreground">No reviews yet — be the first.</p>
       ) : (
         <ul className="space-y-3">
           {reviews.map(r => (
-            <li key={r.id} className="bg-card border border-border rounded-xl p-4">
+            <li key={r.id} className="bg-card border border-heather/30 rounded-xl p-4 shadow-soft">
               <div className="flex items-center gap-2 mb-1">
-                <span className="font-medium">{r.profile?.display_name ?? "Traveller"}</span>
+                <span className="font-semibold text-[#26153B]">{r.profile?.display_name ?? "Traveller"}</span>
                 <span className="flex items-center gap-0.5">
-                  {[1,2,3,4,5].map(n => <Star key={n} className={`size-3.5 ${n <= r.rating ? "fill-primary text-primary" : "text-muted-foreground/40"}`} />)}
+                  {[1,2,3,4,5].map(n => <Star key={n} className={`size-3.5 ${n <= r.rating ? "fill-electric text-heather" : "text-muted-foreground/30"}`} />)}
                 </span>
                 <span className="text-xs text-muted-foreground ml-auto">{new Date(r.created_at).toLocaleDateString()}</span>
               </div>

@@ -142,28 +142,28 @@ export default function DestinationDetail() {
                   <Button
                     onClick={() => add({ slug: d.slug, place: d.place, state: d.state })}
                     disabled={inItinerary}
-                    className="w-full bg-heather hover:bg-heather-600 text-white font-semibold transition-all shadow-soft hover:shadow-lift"
+                    className="w-full bg-electric hover:bg-[#d5f325] text-[#190C28] font-bold transition-all shadow-[0_0_16px_rgba(228,255,59,0.45)] hover:shadow-[0_0_20px_rgba(228,255,59,0.6)]"
                   >
-                    {inItinerary ? <><Check className="size-4 mr-2 text-electric" /> Added to itinerary</> : <><Plus className="size-4 mr-2" /> Add to itinerary</>}
+                    {inItinerary ? <><Check className="size-4 mr-2 text-[#190C28]" /> Added to itinerary</> : <><Plus className="size-4 mr-2" /> Add to itinerary</>}
                   </Button>
                 </Magnetic>
               </motion.div>
               <WeatherCard lat={d.coords.lat} lng={d.coords.lng} />
               <Reveal>
-                <div className="bg-card border border-border rounded-xl p-5">
-                  <h3 className="font-display text-lg mb-3">Coordinates</h3>
+                <div className="bg-card border border-heather/30 rounded-xl p-5 shadow-soft">
+                  <h3 className="font-display text-lg mb-3 text-[#26153B]">Coordinates</h3>
                   <p className="text-sm text-muted-foreground">Lat {d.coords.lat}°<br/>Lng {d.coords.lng}°</p>
                 </div>
               </Reveal>
               <Reveal>
-                <div className="bg-card border border-border rounded-xl p-5">
-                  <h3 className="font-display text-lg mb-3">Nearby Points of Interest</h3>
+                <div className="bg-card border border-heather/30 rounded-xl p-5 shadow-soft">
+                  <h3 className="font-display text-lg mb-3 text-[#26153B]">Nearby Points of Interest</h3>
                   <ul className="space-y-2 text-sm">
                     {d.nearby_poi.map((p, i) => (
                       <li key={i} className="flex items-start gap-2">
-                        <MapPin className="size-4 text-primary mt-0.5 shrink-0" />
+                        <MapPin className="size-4 text-heather mt-0.5 shrink-0" />
                         <div>
-                          <p className="font-medium">{p.name}</p>
+                          <p className="font-semibold text-[#26153B]">{p.name}</p>
                           <p className="text-xs text-muted-foreground capitalize">{p.kind}</p>
                         </div>
                       </li>

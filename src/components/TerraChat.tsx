@@ -346,12 +346,12 @@ export function TerraChat() {
                   aria-label="Open Terra chatbot"
                   title="Terra — your India travel guide"
                 >
-                  <Sparkles className="size-7" />
+                  <Sparkles className="size-7 text-electric" />
 
                   {/* Notification dot — disappears once the user opens the panel */}
                   {!hasOpened && (
                     <span
-                      className="absolute top-1 right-1 size-3 rounded-full bg-secondary ring-2 ring-background"
+                      className="absolute top-1 right-1 size-3.5 rounded-full bg-electric ring-2 ring-primary animate-pulse shadow-[0_0_8px_#E4FF3B]"
                       aria-label="New messages"
                     />
                   )}
@@ -421,12 +421,12 @@ export function TerraChat() {
                   aria-label="Open Terra chatbot"
                   title="Terra — your India travel guide"
                 >
-                  <Sparkles className="size-7" />
+                  <Sparkles className="size-7 text-electric" />
 
                   {/* Notification dot — disappears once the user opens the panel */}
                   {!hasOpened && (
                     <span
-                      className="absolute top-1 right-1 size-3 rounded-full bg-secondary ring-2 ring-background"
+                      className="absolute top-1 right-1 size-3.5 rounded-full bg-electric ring-2 ring-primary animate-pulse shadow-[0_0_8px_#E4FF3B]"
                       aria-label="New messages"
                     />
                   )}
@@ -535,7 +535,7 @@ export function TerraChat() {
                 onClick={send}
                 disabled={busy || !input.trim()}
                 size="icon"
-                className="bg-primary hover:bg-primary/90 shrink-0"
+                className="bg-electric hover:bg-[#d5f325] text-[#190C28] shrink-0 shadow-sm"
               >
                 <Send className="size-4" />
               </Button>

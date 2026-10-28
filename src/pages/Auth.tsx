@@ -64,7 +64,7 @@ export default function Auth() {
             <Label htmlFor="password">Password</Label>
             <Input id="password" type="password" autoComplete={mode === "signin" ? "current-password" : "new-password"} value={password} onChange={e => setPassword(e.target.value)} required minLength={6} />
           </div>
-          <Button type="submit" disabled={busy} className="w-full bg-primary hover:bg-primary/90">
+          <Button type="submit" disabled={busy} className="w-full bg-electric text-[#1a1226] font-semibold hover:bg-electric/90 shadow-sm">
             {busy && <Loader2 className="size-4 animate-spin mr-2" />} {mode === "signin" ? "Log in" : "Sign up"}
           </Button>
         </form>

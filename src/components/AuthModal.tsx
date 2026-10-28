@@ -95,7 +95,7 @@ export function AuthModal({
             <Label htmlFor="pw">Password</Label>
             <Input id="pw" type="password" value={password} onChange={e => setPassword(e.target.value)} autoComplete={mode === "signin" ? "current-password" : "new-password"} />
           </div>
-          <Button type="submit" disabled={submitting} className="w-full bg-primary hover:bg-primary/90">
+          <Button type="submit" disabled={submitting} className="w-full bg-electric text-[#1a1226] font-semibold hover:bg-electric/90 shadow-sm">
             {submitting ? "Please wait…" : (mode === "signin" ? "Sign in" : "Create account")}
           </Button>
           <p className="text-sm text-center text-muted-foreground">

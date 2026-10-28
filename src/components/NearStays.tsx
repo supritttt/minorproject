@@ -12,9 +12,9 @@ import {
 } from "@/data/stays";
 
 const tierMeta: Record<StayTier, { icon: React.ElementType; chip: string }> = {
-  Luxury: { icon: Sparkles, chip: "bg-primary/10 text-primary border-primary/20" },
-  Standard: { icon: Building2, chip: "bg-secondary text-secondary-foreground border-border" },
-  Budget: { icon: Wallet, chip: "bg-muted text-muted-foreground border-border" },
+  Luxury: { icon: Sparkles, chip: "badge-lemon font-semibold" },
+  Standard: { icon: Building2, chip: "badge-heather font-medium" },
+  Budget: { icon: Wallet, chip: "bg-porcelain text-[#2D2141] border border-[#9B7ED6]/30 font-medium" },
 };
 
 export function NearStays({
@@ -74,8 +74,8 @@ export function NearStays({
                       </div>
                       <p className="text-xs text-muted-foreground">{s.area}</p>
                       <div className="flex items-center justify-between gap-2 mt-1.5">
-                        <span className="inline-flex items-center gap-1 text-[11px] font-medium text-primary/90 bg-primary/10 border border-primary/20 rounded-full px-2 py-0.5">
-                          <Map className="size-3" /> {formatDistance(km)}
+                        <span className="inline-flex items-center gap-1 text-[11px] font-medium text-[#2D2141] bg-porcelain border border-[#9B7ED6]/30 rounded-full px-2 py-0.5">
+                          <Map className="size-3 text-[#9B7ED6]" /> {formatDistance(km)}
                         </span>
                         <div className="flex items-center gap-1.5">
                           <button
@@ -90,7 +90,7 @@ export function NearStays({
                               <Button
                                 size="sm"
                                 variant="default"
-                                className="h-7 px-2.5 text-xs bg-primary hover:bg-primary/90"
+                                className="h-7 px-2.5 text-xs bg-electric text-[#1a1226] font-semibold hover:bg-electric/90 shadow-sm"
                               >
                                 Book Now
                                 <ExternalLink className="size-3 ml-1" />

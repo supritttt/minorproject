@@ -76,26 +76,26 @@ export function ChatRoom({ slug }: { slug: string }) {
             const mine = m.user_id === user?.id;
             return (
               <div key={m.id} className={`flex ${mine ? "justify-end" : "justify-start"}`}>
-                <div className={`max-w-[80%] rounded-2xl px-3.5 py-2 ${mine ? "bg-primary text-primary-foreground" : "bg-muted text-foreground"}`}>
-                  {!mine && <p className="text-[11px] font-medium opacity-80 mb-0.5">{m.profile?.display_name ?? "Traveller"}</p>}
+                <div className={`max-w-[80%] rounded-2xl px-3.5 py-2 ${mine ? "bg-heather text-white shadow-sm" : "bg-porcelain text-[#26153B] border border-heather/25 shadow-sm"}`}>
+                  {!mine && <p className="text-[11px] font-semibold opacity-85 mb-0.5 text-heather-700">{m.profile?.display_name ?? "Traveller"}</p>}
                   {m.image_url && <img src={m.image_url} alt="" className="rounded-lg mb-1.5 max-h-56" />}
                   {m.content && <p className="text-sm whitespace-pre-wrap break-words">{m.content}</p>}
-                  <p className={`text-[10px] mt-0.5 ${mine ? "opacity-70" : "text-muted-foreground"}`}>{new Date(m.created_at).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</p>
+                  <p className={`text-[10px] mt-0.5 ${mine ? "opacity-80" : "text-muted-foreground"}`}>{new Date(m.created_at).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</p>
                 </div>
               </div>
             );
           })}
         </div>
-        <div className="border-t border-border p-3">
+        <div className="border-t border-heather/25 p-3">
           {image && (
-            <div className="flex items-center gap-2 mb-2 text-xs bg-muted rounded px-2 py-1 w-fit">
+            <div className="flex items-center gap-2 mb-2 text-xs bg-porcelain rounded px-2 py-1 w-fit border border-heather/20">
               <ImagePlus className="size-3.5" /> {image.name}
               <button onClick={() => setImage(null)} aria-label="Remove image"><X className="size-3.5" /></button>
             </div>
           )}
           <div className="flex items-center gap-2">
-            <label className="cursor-pointer p-2 hover:bg-accent rounded-md transition-colors" aria-label="Attach image">
-              <ImagePlus className="size-4 text-muted-foreground" />
+            <label className="cursor-pointer p-2 hover:bg-heather/15 rounded-md transition-colors" aria-label="Attach image">
+              <ImagePlus className="size-4 text-heather" />
               <input type="file" accept="image/*" className="hidden" onChange={e => setImage(e.target.files?.[0] ?? null)} />
             </label>
             <Input
@@ -104,8 +104,9 @@ export function ChatRoom({ slug }: { slug: string }) {
               onKeyDown={e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); } }}
               placeholder={user ? "Say something…" : "Log in to chat"}
               disabled={!user || sending}
+              className="bg-porcelain/60 border-heather/30 text-[#26153B]"
             />
-            <Button onClick={send} disabled={sending || !user} size="icon" className="bg-primary hover:bg-primary/90 shrink-0">
+            <Button onClick={send} disabled={sending || !user} size="icon" className="bg-electric hover:bg-[#d5f325] text-[#190C28] shrink-0 shadow-sm">
               {sending ? <Loader2 className="size-4 animate-spin" /> : <Send className="size-4" />}
             </Button>
           </div>

@@ -44,7 +44,7 @@ export default function Itinerary() {
 
           <div className="flex flex-col sm:flex-row gap-3 mb-6">
             <Input value={title} onChange={e => setTitle(e.target.value)} placeholder="Trip title" className="sm:max-w-xs" />
-            <Button onClick={share} disabled={saving || !items.length} className="bg-primary hover:bg-primary/90">
+            <Button onClick={share} disabled={saving || !items.length} className="bg-electric hover:bg-[#d5f325] text-[#190C28] font-bold shadow-[0_0_12px_rgba(228,255,59,0.4)]">
               {saving ? <Loader2 className="size-4 animate-spin mr-2" /> : <Share2 className="size-4 mr-2" />} Save & share
             </Button>
             {items.length > 0 && (

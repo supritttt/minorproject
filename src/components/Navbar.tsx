@@ -57,7 +57,7 @@ export function Navbar() {
                 onFocus={() => setShowSuggest(true)}
                 onBlur={() => setTimeout(() => setShowSuggest(false), 150)}
                 placeholder="Search destinations or states…"
-                className="pl-10 h-10 bg-background/70 border-border focus-visible:ring-primary/30"
+                className="pl-10 h-10 bg-porcelain/60 border-heather/35 focus-visible:ring-electric/60 text-[#26153B] placeholder:text-[#6B5581]"
                 aria-label="Search destinations"
               />
             </div>
@@ -69,18 +69,18 @@ export function Navbar() {
                   animate={reduce ? undefined : "show"}
                   exit={reduce ? undefined : "exit"}
                   style={{ originY: 0 }}
-                  className="absolute top-full mt-2 inset-x-0 bg-popover border border-border rounded-md shadow-lift overflow-hidden z-50"
+                  className="absolute top-full mt-2 inset-x-0 bg-card border border-heather/40 rounded-xl shadow-lift overflow-hidden z-50"
                 >
                   {suggestions.map((d, i) => (
                     <motion.button
                       key={d.slug}
                       onMouseDown={() => navigate(`/destination/${d.slug}`)}
-                      className="w-full flex items-center gap-3 px-4 py-2.5 text-left hover:bg-accent/50 transition-colors"
+                      className="w-full flex items-center gap-3 px-4 py-2.5 text-left hover:bg-heather/20 text-[#26153B] transition-colors"
                       initial={reduce ? false : { opacity: 0, x: -4 }}
                       animate={reduce ? undefined : { opacity: 1, x: 0 }}
                       transition={{ duration: DUR.fast, ease: EASE, delay: i * 0.025 }}
                     >
-                      <MapPin className="size-4 text-primary shrink-0" />
+                      <MapPin className="size-4 text-heather shrink-0" />
                       <span className="font-medium">{d.place}</span>
                       <span className="text-xs text-muted-foreground ml-auto">{d.state}</span>
                     </motion.button>
@@ -141,7 +141,7 @@ export function Navbar() {
             ) : (
               <>
                 <Magnetic max={4}>
-                  <Button variant="ghost" size="sm" onClick={() => { setAuthMode("signin"); setAuthOpen(true); }} className="hover:bg-porcelain/70">
+                  <Button variant="ghost" size="sm" onClick={() => { setAuthMode("signin"); setAuthOpen(true); }} className="hover:bg-heather/20 text-[#26153B] font-semibold">
                     Login
                   </Button>
                 </Magnetic>
@@ -149,7 +149,7 @@ export function Navbar() {
                   <Button
                     size="sm"
                     onClick={() => { setAuthMode("signup"); setAuthOpen(true); }}
-                    className="bg-heather hover:bg-heather-600 text-white font-medium shadow-sm transition-all"
+                    className="bg-electric hover:bg-[#d5f325] text-[#190C28] font-bold shadow-[0_0_12px_rgba(228,255,59,0.4)] transition-all"
                   >
                     Sign Up
                   </Button>

@@ -43,15 +43,15 @@ export default function Home() {
             <Magnetic max={6}>
               <Link
                 to="/destinations"
-                className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold h-11 px-8 bg-heather text-white hover:bg-heather-600 shadow-soft hover:shadow-lift transition-all"
+                className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-bold h-11 px-8 bg-electric text-[#190C28] hover:bg-[#d5f325] shadow-[0_0_16px_rgba(228,255,59,0.45)] transition-all"
               >
-                Browse Destinations <ArrowRight className="size-4 text-electric" />
+                Browse Destinations <ArrowRight className="size-4 text-[#190C28]" />
               </Link>
             </Magnetic>
             <Magnetic max={6}>
               <Link
                 to="/featured"
-                className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium h-11 px-8 border border-heather/30 bg-porcelain/60 hover:bg-porcelain text-foreground transition-all"
+                className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-bold h-11 px-8 border-2 border-heather/60 bg-porcelain hover:bg-heather/20 text-[#26153B] transition-all shadow-soft"
               >
                 See Featured <ArrowRight className="size-4 text-heather" />
               </Link>

@@ -2,60 +2,68 @@
 @tailwind components;
 @tailwind utilities;
 
-/* HiddenTerra design system. All colors HSL. Coastal Trust — clean & inviting. */
+/* HiddenTerra design system. Strictly:
+   1. Porcelain Beige (#F3E6D7)
+   2. Heather Purple (#9B7ED6)
+   3. Electric Lemon (#E4FF3B)
+*/
 @layer base {
   :root {
-    /* Palette — Coastal Trust (60% off-white / 30% ocean blue / 10% sandy gold) */
-    --background: 220 33% 97%;         /* #F4F6F9 soft off-white */
-    --foreground: 212 71% 23%;         /* #113F67 deep ocean blue (headers/text) */
+    /* Background Canvas: Porcelain Beige */
+    --background: 32 52% 90%;          /* #F3E6D7 Porcelain Beige */
+    --foreground: 265 47% 16%;          /* #26153B Deep Heather Purple (text & headers) */
 
-    --card: 0 0% 100%;                 /* pure white card on off-white canvas */
-    --card-foreground: 212 71% 23%;
+    /* Cards & Popovers: Soft Porcelain Ivory */
+    --card: 32 50% 96%;                /* #FAF4ED warm porcelain */
+    --card-foreground: 265 47% 16%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 212 71% 23%;
+    --popover: 32 50% 96%;
+    --popover-foreground: 265 47% 16%;
 
-    --primary: 212 71% 23%;            /* #113F67 deep ocean blue */
-    --primary-foreground: 220 33% 97%;
+    /* Primary: Heather Purple (#9B7ED6) */
+    --primary: 260 54% 67%;             /* #9B7ED6 Heather Purple */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 212 50% 40%;          /* lighter ocean for secondary surfaces */
-    --secondary-foreground: 220 33% 97%;
+    /* Secondary: Deep Heather Purple */
+    --secondary: 262 48% 44%;           /* #683E9F Deep Heather */
+    --secondary-foreground: 32 52% 95%;
 
-    --muted: 220 25% 92%;
-    --muted-foreground: 212 35% 38%;
+    /* Muted: Porcelain Muted & Heather Slate */
+    --muted: 32 40% 84%;               /* #E5D3BE Porcelain shade */
+    --muted-foreground: 263 26% 44%;    /* #6B5581 Heather Slate text */
 
-    --accent: 32 49% 64%;              /* #D4A373 sandy gold (CTAs) */
-    --accent-foreground: 212 71% 23%;
+    /* Accent: Electric Lemon (#E4FF3B) */
+    --accent: 68 100% 62%;              /* #E4FF3B Electric Lemon */
+    --accent-foreground: 265 52% 12%;   /* #190C28 Deep Heather Dark */
 
-    --destructive: 0 70% 50%;
+    --destructive: 0 75% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 25% 86%;
-    --input: 220 25% 86%;
-    --ring: 32 49% 64%;
+    /* Borders: Heather-tinted porcelain */
+    --border: 260 30% 80%;              /* Heather soft border */
+    --input: 260 25% 82%;
+    --ring: 68 100% 62%;                /* #E4FF3B Electric Lemon ring */
 
     --radius: 0.625rem;
 
-    /* Theme Enhancements: Porcelain Beige (#F3E6D7), Heather Purple (#9B7ED6), Electric Lemon (#E4FF3B) */
-    --porcelain: 32 52% 90%;            /* #F3E6D7 porcelain beige */
-    --porcelain-surface: 32 45% 94%;    /* soft warm porcelain surface */
-    --heather: 260 54% 67%;              /* #9B7ED6 heather purple */
+    --porcelain: 32 52% 90%;            /* #F3E6D7 */
+    --porcelain-surface: 32 50% 96%;    /* #FAF4ED */
+    --heather: 260 54% 67%;             /* #9B7ED6 */
     --heather-foreground: 0 0% 100%;
-    --electric-lemon: 68 100% 62%;       /* #E4FF3B electric lemon */
-    --electric-lemon-foreground: 260 50% 12%;
+    --electric-lemon: 68 100% 62%;      /* #E4FF3B */
+    --electric-lemon-foreground: 265 52% 12%;
 
-    /* Gradients & shadows — enriched with Porcelain warm wash & Heather glow */
-    --gradient-warm: linear-gradient(135deg, hsl(260 54% 67%) 0%, hsl(32 49% 64%) 60%, hsl(68 100% 62%) 100%);
-    --gradient-porcelain: linear-gradient(135deg, #FCF8F4 0%, #F3E6D7 100%);
-    --gradient-heather: linear-gradient(135deg, #9B7ED6 0%, #6B44B9 100%);
-    --gradient-sage: linear-gradient(135deg, hsl(220 33% 97%) 0%, hsl(32 52% 92%) 100%);
-    --shadow-soft: 0 4px 24px -8px hsl(260 40% 30% / 0.12);
-    --shadow-lift: 0 12px 40px -12px hsl(260 40% 30% / 0.22), 0 0 0 1px hsl(260 54% 67% / 0.15);
+    /* Gradients purely from the 3 colors */
+    --gradient-warm: linear-gradient(135deg, #9B7ED6 0%, #F3E6D7 65%, #E4FF3B 100%);
+    --gradient-porcelain: linear-gradient(135deg, #FAF4ED 0%, #F3E6D7 100%);
+    --gradient-heather: linear-gradient(135deg, #9B7ED6 0%, #683E9F 100%);
+    --gradient-lemon: linear-gradient(135deg, #E4FF3B 0%, #D2F226 100%);
+    --shadow-soft: 0 4px 24px -6px rgba(155, 126, 214, 0.22);
+    --shadow-lift: 0 12px 36px -10px rgba(155, 126, 214, 0.35), 0 0 0 1px rgba(155, 126, 214, 0.3);
 
     --transition-smooth: all 320ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* No dark mode toggle yet — light coastal palette */
   .dark { color-scheme: light; }
 }
 
@@ -64,11 +72,12 @@
   html { scroll-behavior: smooth; }
   body {
     @apply text-foreground antialiased;
-    background-color: hsl(var(--background));
+    background-color: #F3E6D7;
     background-image:
-      radial-gradient(ellipse 90% 60% at 5% -10%, hsl(var(--porcelain) / 0.55), transparent 60%),
-      radial-gradient(ellipse 70% 50% at 95% 10%, hsl(var(--heather) / 0.16), transparent 50%),
-      linear-gradient(135deg, #FCF8F4 0%, hsl(220 28% 95%) 45%, hsl(32 45% 94%) 80%, hsl(260 40% 96%) 100%);
+      radial-gradient(ellipse 90% 60% at 5% -10%, rgba(243, 230, 215, 0.95), transparent 70%),
+      radial-gradient(ellipse 70% 50% at 95% 10%, rgba(155, 126, 214, 0.28), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 50% 80%, rgba(228, 255, 59, 0.12), transparent 60%),
+      linear-gradient(135deg, #F3E6D7 0%, #F8EFE4 40%, #EFE3D5 75%, #ECE7F5 100%);
     background-attachment: fixed;
     font-family: 'Inter', system-ui, sans-serif;
     font-weight: 400;
@@ -78,7 +87,7 @@
     font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
     font-weight: 600;
     letter-spacing: -0.02em;
-    color: hsl(var(--foreground));
+    color: #26153B;
   }
 }
 
@@ -87,34 +96,35 @@
   .font-body { font-family: 'Inter', system-ui, sans-serif; }
 
   .glass-nav {
-    background: hsl(32 52% 98% / 0.88);
-    backdrop-filter: saturate(150%) blur(16px);
-    -webkit-backdrop-filter: saturate(150%) blur(16px);
-    border-bottom: 1px solid hsl(var(--heather) / 0.18);
+    background: rgba(243, 230, 215, 0.94);
+    backdrop-filter: saturate(160%) blur(16px);
+    -webkit-backdrop-filter: saturate(160%) blur(16px);
+    border-bottom: 1.5px solid rgba(155, 126, 214, 0.35);
+    box-shadow: 0 4px 20px -6px rgba(155, 126, 214, 0.18);
   }
 
-  /* Badge variants for custom palette */
+  /* Badge variants strictly for the 3 colors */
   .badge-lemon {
     background-color: #E4FF3B;
-    color: #171024;
+    color: #190C28;
     font-weight: 600;
-    border: 1px solid rgba(228, 255, 59, 0.6);
-    box-shadow: 0 0 14px -2px rgba(228, 255, 59, 0.45);
+    border: 1.5px solid #d4f227;
+    box-shadow: 0 0 14px -2px rgba(228, 255, 59, 0.55);
   }
 
   .badge-heather {
     background-color: #9B7ED6;
     color: #FFFFFF;
     font-weight: 500;
-    border: 1px solid rgba(155, 126, 214, 0.5);
-    box-shadow: 0 0 12px -2px rgba(155, 126, 214, 0.35);
+    border: 1px solid rgba(155, 126, 214, 0.6);
+    box-shadow: 0 0 12px -2px rgba(155, 126, 214, 0.4);
   }
 
   .badge-porcelain {
     background-color: #F3E6D7;
-    color: hsl(var(--foreground));
+    color: #26153B;
     font-weight: 500;
-    border: 1px solid rgba(220, 190, 161, 0.7);
+    border: 1.5px solid rgba(155, 126, 214, 0.35);
   }
 
   .glow-lemon {

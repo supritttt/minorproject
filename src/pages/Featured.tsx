@@ -107,9 +107,9 @@ export default function Featured() {
             <Magnetic max={6}>
               <Link
                 to="/destinations"
-                className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold h-11 px-8 bg-heather text-white hover:bg-heather-600 shrink-0 shadow-soft hover:shadow-lift transition-all"
+                className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-bold h-11 px-8 bg-electric text-[#190C28] hover:bg-[#d5f325] shrink-0 shadow-[0_0_16px_rgba(228,255,59,0.4)] transition-all"
               >
-                Browse All <ArrowRight className="size-4 text-electric" />
+                Browse All <ArrowRight className="size-4 text-[#190C28]" />
               </Link>
             </Magnetic>
           </motion.div>
